@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     private int maxVCamPriority = 100;
     private int launcherVCamDefaultPriority = 20;
     private int flyingObjectVCamDefaultPriority = 10;
-
+    private Vector3 startFlyingPos;
 
     private void Start()
     {
@@ -30,8 +30,14 @@ public class CameraManager : MonoBehaviour
     }
     private void Init()
     {
-        launcherVCam.Priority = launcherVCamDefaultPriority;
-        flyingObjectVCam.Priority = flyingObjectVCamDefaultPriority;
+        ResetFlyingCamera();
+        ResetLauncherCamera();
+        Invoke("LookAtLauncher", 1);
+    }
+
+    public void LookAtLauncher()
+    {
+        ResetFlyingCamera();
         if (launcherVCamTargetTag != "")
         {
             GameObject followTarget = GameObject.FindGameObjectWithTag(launcherVCamTargetTag);
@@ -40,13 +46,26 @@ public class CameraManager : MonoBehaviour
                 launcherVCam.Follow = followTarget.transform;
             }
         }
+        launcherVCam.Priority = maxVCamPriority;
     }
 
     public void FollowFlyingObject(Transform objectTransform)
     {
-        flyingObjectVCam.Follow = objectTransform;
-        flyingObjectVCam.LookAt = objectTransform;
+        flyingObjectVCam.Follow = objectTransform.transform;
+        flyingObjectVCam.LookAt = objectTransform.transform;
         flyingObjectVCam.Priority = maxVCamPriority;
+        startFlyingPos = objectTransform.position;
+    }
+
+    public void ResetLauncherCamera()
+    {
+        launcherVCam.Priority = launcherVCamDefaultPriority;
+    }
+    public void ResetFlyingCamera()
+    {
+        CinemachineTransposer tp = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
+        flyingObjectVCam.transform.position = startFlyingPos + tp.m_FollowOffset;
+        flyingObjectVCam.Priority = flyingObjectVCamDefaultPriority;
     }
 
 }

@@ -17,7 +17,6 @@ public class TestDummy : MonoBehaviour
     private float bounceTime = 1f;
     private float lastBounce = 0f;
     private Vector3 velocity;
-    private const float bounceCoef = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +95,8 @@ public class TestDummy : MonoBehaviour
         if (outOfCannon)
         {
             velocity = velocity + new Vector3(0, -PhysicsConstants.gravity, 0) * Time.deltaTime;
+            float scaledDrag = PhysicsConstants.drag * Time.deltaTime;
+            velocity = new Vector3(velocity.x - scaledDrag, velocity.y - scaledDrag, velocity.z - scaledDrag);
             body.velocity = velocity;
         }
     }
@@ -104,13 +105,7 @@ public class TestDummy : MonoBehaviour
     {
         if (bounceTime < (Time.time - lastBounce))
         {
-            Vector2 norm2 = new Vector2(normal.x, normal.z);
-            Vector2 dummyDir2 = new Vector2(body.velocity.x, body.velocity.z);
-            Vector2 reflected = Vector2.Reflect(dummyDir2, norm2);
-            velocity = Vector3.Reflect(velocity, normal) * bounceCoef;
-            // Vector3 bounceForce = new Vector3(reflected.x, dummyDir2.y, reflected.y) * 2.5f + Vector3.up;
-
-            // body.AddForceAtPosition(bounceForce, point, ForceMode.Impulse);
+            velocity = Vector3.Reflect(velocity, normal) * PhysicsConstants.bigBounceCoef;
             lastBounce = Time.time;
         }
     }
@@ -119,7 +114,10 @@ public class TestDummy : MonoBehaviour
     {
         if (collision.collider.tag != "Bounce")
         {
-            velocity = Vector3.zero;
+            var normal = collision.GetContact(0).normal;
+            var reflected = Vector3.Reflect(velocity, normal);
+            var coef = PhysicsConstants.smallBounceCoef;
+            velocity = new Vector3(reflected.x * coef, reflected.y * coef, reflected.z * coef);
         }
     }
 }
