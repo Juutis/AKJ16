@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 8441902699941995747}
   - component: {fileID: 8414842651404938950}
   m_Layer: 0
-  m_Name: Island
+  m_Name: TestIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
