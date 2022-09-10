@@ -366,6 +366,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1538826574936865465, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: launchSpeed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1552340841475884135, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_UseWorldSpace

@@ -7,8 +7,16 @@ public class LaunchableObject : MonoBehaviour
     private Rigidbody rigidBaby;
     private bool isLaunched = false;
     private ObjectLauncher launcher;
-    public void Launch(float speed, ObjectLauncher launcher)
+
+    private bool shoot = false;
+    private float bounceTime = 1f;
+    private float lastBounce = 0f;
+    private Vector3 velocity;
+    private float launchForceSpeed;
+
+    public void Launch(float launchForceSpeed, ObjectLauncher launcher)
     {
+        this.launchForceSpeed = launchForceSpeed;
         this.launcher = launcher;
         if (isLaunched)
         {
@@ -18,8 +26,7 @@ public class LaunchableObject : MonoBehaviour
         {
             rigidBaby = GetComponent<Rigidbody>();
         }
-        rigidBaby.AddForce(transform.forward * speed);
-        isLaunched = true;
+        shoot = true;
     }
 
     private void Update()
@@ -31,11 +38,51 @@ public class LaunchableObject : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (shoot)
+        {
+            rigidBaby.useGravity = true;
+            isLaunched = true;
+            shoot = false;
+            //body.AddForce(body.transform.up * force, ForceMode.Impulse);
+            velocity = rigidBaby.transform.forward * launchForceSpeed;
+        }
+
+        if (isLaunched)
+        {
+            velocity = velocity + new Vector3(0, -PhysicsConstants.gravity, 0) * Time.deltaTime;
+            float scaledDrag = PhysicsConstants.drag * Time.deltaTime;
+            velocity = velocity - Vector3.one * scaledDrag;
+            rigidBaby.velocity = velocity;
+        }
+    }
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject != null && collision.gameObject.layer == LayerMask.NameToLayer("Water"))
+        if (collision.gameObject == null)
+        {
+            return;
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             launcher.Reset();
+        }
+        if (collision.collider.tag != "Bounce")
+        {
+            var normal = collision.GetContact(0).normal;
+            var reflected = Vector3.Reflect(velocity, normal);
+            var coef = PhysicsConstants.smallBounceCoef;
+            velocity = reflected * coef;
+        }
+    }
+
+    public void Bounce(Vector3 point, Vector3 normal)
+    {
+        if (bounceTime < (Time.time - lastBounce))
+        {
+            velocity = Vector3.Reflect(velocity, normal) * PhysicsConstants.bigBounceCoef;
+            lastBounce = Time.time;
         }
     }
 }

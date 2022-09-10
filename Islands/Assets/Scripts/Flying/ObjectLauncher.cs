@@ -20,7 +20,7 @@ public class ObjectLauncher : MonoBehaviour
     private Vector2 rotateSpeed = new Vector2(2, 3);
 
     [SerializeField]
-    private float launchSpeed = 5f;
+    private Vector2 launchSpeed = new Vector2(12, 24);
     [SerializeField]
     private KeyCode launchKey = KeyCode.Space;
     [SerializeField]
@@ -104,7 +104,7 @@ public class ObjectLauncher : MonoBehaviour
         if (objectToLaunchPrefab != null)
         {
             launchedObject = Instantiate(objectToLaunchPrefab, transform.position, launchPreview.transform.rotation);
-            launchedObject.Launch(launchSpeed, this);
+            launchedObject.Launch(Mathf.Lerp(launchSpeed.x, launchSpeed.y, powerMeter.GetPower()), this);
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
         }
     }
