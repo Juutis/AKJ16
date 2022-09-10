@@ -193,7 +193,7 @@ Transform:
   - {fileID: 8199097724875238063}
   - {fileID: 6802171138129746639}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5454459225518281273
 MonoBehaviour:
@@ -214,7 +214,7 @@ MonoBehaviour:
   clampHorizontal: {x: -90, y: 90}
   clampVertical: {x: 5, y: 85}
   rotateSpeed: {x: 120, y: 180}
-  launchSpeed: {x: 12, y: 24}
+  launchSpeed: {x: 10, y: 50}
   launchKey: 32
   powerMeter: {fileID: 206027005736548259}
 --- !u!1 &5454459225851162490
