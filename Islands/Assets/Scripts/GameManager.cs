@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Island> islands;
     [SerializeField]
-    private GameObject currentCannon;
+    private ObjectLauncher currentCannon;
     private Island currentIsland;
+    private LaunchableObject flyingObject;
 
     private void Awake()
     {
@@ -29,10 +30,15 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void ChangeCannon(GameObject cannon)
+    public void ChangeCannon(ObjectLauncher cannon)
     {
-        currentCannon.SetActive(false);
+        currentCannon.gameObject.SetActive(false);
         currentCannon = cannon;
+        cannon.gameObject.SetActive(true);
+        // DELETE Zarguuf
+        // Call current ObjectLauncher reset
+        GameObject.Destroy(this.flyingObject);
+        currentCannon.Reset();
     }
 
     public void SetCurrentIsland(Island island)
@@ -43,5 +49,10 @@ public class GameManager : MonoBehaviour
             // Game over
             Debug.Log("GAME OVER!");
         }
+    }
+
+    public void SetFlyingObject(LaunchableObject flyingObject)
+    {
+        this.flyingObject = flyingObject;
     }
 }

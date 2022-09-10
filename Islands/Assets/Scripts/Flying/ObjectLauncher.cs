@@ -116,6 +116,7 @@ public class ObjectLauncher : MonoBehaviour
             launchedObject.Launch(Mathf.Lerp(launchSpeed.x, launchSpeed.y, powerMeter.GetPower()), this);
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
             muzzleFlash.Play();
+            GameManager.main.SetFlyingObject(launchedObject);
         }
     }
 }
