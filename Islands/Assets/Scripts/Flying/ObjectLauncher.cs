@@ -21,13 +21,19 @@ public class ObjectLauncher : MonoBehaviour
 
     [SerializeField]
     private float launchSpeed = 5f;
+    [SerializeField]
+    private KeyCode launchKey = KeyCode.Space;
+    [SerializeField]
+    private LauncherPowerMeter powerMeter;
     private float axisX;
     private float axisY;
 
     private Vector3 direction;
 
     private bool isLaunched = false;
+    private bool isLaunchKeyDown = false;
     private LaunchableObject launchedObject;
+
 
     private void Start()
     {
@@ -51,16 +57,21 @@ public class ObjectLauncher : MonoBehaviour
     {
         GetInput();
         RotatePreview();
-
         UIManager.main.DisplayLaunchDirection(direction);
         if (Input.GetKeyUp(KeyCode.R))
         { // for debugging
             Reset();
         }
-        if (!isLaunched && Input.GetKeyUp(KeyCode.Space))
+        if (!isLaunchKeyDown && !isLaunched && Input.GetKeyDown(launchKey))
         {
-            isLaunched = true;
+            isLaunchKeyDown = true;
+        }
+        if (!isLaunched && isLaunchKeyDown && Input.GetKeyUp(launchKey))
+        {
             Launch();
+            isLaunched = true;
+            isLaunchKeyDown = false;
+            powerMeter.StopMoving();
         }
 
     }
@@ -82,7 +93,10 @@ public class ObjectLauncher : MonoBehaviour
             direction.x = Mathf.Clamp(direction.x - axisY * rotateSpeed.y, clampVertical.x, clampVertical.y);
         }
         launchPreview.DisplayDirection(transform.position, direction);
-        Debug.DrawLine(launchPreview.transform.position, launchPreview.transform.forward * 5f, Color.magenta, 0.1f);
+        if (isLaunchKeyDown)
+        {
+            powerMeter.SetTarget(launchPreview.transform);
+        }
     }
 
     private void Launch()
