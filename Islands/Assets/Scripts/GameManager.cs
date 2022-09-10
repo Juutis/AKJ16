@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         cannon.gameObject.SetActive(true);
         // DELETE Zarguuf
         // Call current ObjectLauncher reset
-        GameObject.Destroy(this.flyingObject);
+        GameObject.Destroy(this.flyingObject.gameObject);
         currentCannon.Reset();
     }
 

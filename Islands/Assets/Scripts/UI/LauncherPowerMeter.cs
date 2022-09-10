@@ -25,7 +25,7 @@ public class LauncherPowerMeter : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         targetDirection = newTarget.forward;
-        origin = newTarget.position;
+        origin = newTarget.localPosition;
         //target = newTarget;
         isMoving = true;
     }
