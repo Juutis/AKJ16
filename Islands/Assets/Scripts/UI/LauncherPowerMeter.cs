@@ -28,7 +28,6 @@ public class LauncherPowerMeter : MonoBehaviour
         origin = newTarget.position;
         //target = newTarget;
         isMoving = true;
-        Debug.Log("StartMove");
     }
     public void Reset()
     {
@@ -39,7 +38,6 @@ public class LauncherPowerMeter : MonoBehaviour
     {
         isMoving = false;
         Reset();
-        Debug.Log("StopMove");
     }
 
     private void Update()
@@ -66,7 +64,6 @@ public class LauncherPowerMeter : MonoBehaviour
         line.positionCount = currentStep;
         Vector3[] positions = new Vector3[currentStep];
         Vector3 targetPos = origin + targetDirection * (currentStep * stepSize);
-        Debug.Log($"targetDirection[{targetDirection}] targetPos[{targetPos}]");
         for (int index = 0; index < currentStep; index += 1)
         {
             //positions[index] = new Vector3(startPos.x, startPos.y, index * stepSize);
