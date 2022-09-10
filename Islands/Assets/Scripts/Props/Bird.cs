@@ -25,7 +25,7 @@ public class Bird : MonoBehaviour
 
     private void FixedUpdate()
     {
-        body.velocity = transform.forward * 60 * Time.deltaTime + transform.up * Mathf.Sin(Time.time * 2f + randomOffsetY) * 15f * Time.deltaTime;
+        body.velocity = transform.forward * 60 * Time.deltaTime;// + transform.up; * Mathf.Sin(Time.time * 2f + randomOffsetY) * 15f * Time.deltaTime;
         var pos2 = new Vector3(transform.position.x, 0, transform.position.z);
         var center2 = new Vector3(center.position.x, 0, center.position.z);
         Vector3 lookToward = Quaternion.AngleAxis(-90, Vector3.up) * (pos2 - center2);
