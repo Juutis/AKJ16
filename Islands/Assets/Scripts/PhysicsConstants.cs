@@ -9,4 +9,7 @@ public static class PhysicsConstants
 
     public const float bigBounceCoef = 0.85f;
     public const float smallBounceCoef = 0.05f;
+
+    public const float flyMoveAmount = 8f;
+    public const float flyBreakAmount = 6f;
 }

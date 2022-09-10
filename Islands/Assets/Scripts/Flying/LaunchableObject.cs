@@ -8,6 +8,9 @@ public class LaunchableObject : MonoBehaviour
     private bool isLaunched = false;
     private ObjectLauncher launcher;
 
+    private float axisX = 0f;
+    private float axisY = 0f;
+
     private bool shoot = false;
     private float bounceTime = 1f;
     private float lastBounce = 0f;
@@ -35,6 +38,7 @@ public class LaunchableObject : MonoBehaviour
         {
             //transform.up = rigidBaby.velocity;
             transform.forward = rigidBaby.velocity;
+            GetInput();
         }
     }
 
@@ -51,9 +55,11 @@ public class LaunchableObject : MonoBehaviour
 
         if (isLaunched)
         {
-            velocity = velocity + new Vector3(0, -PhysicsConstants.gravity, 0) * Time.deltaTime;
-            float scaledDrag = PhysicsConstants.drag * Time.deltaTime;
-            velocity = velocity - Vector3.one * scaledDrag;
+            Vector3 gravity = new Vector3(0, PhysicsConstants.gravity, 0) * Time.deltaTime;
+            Vector3 scaledDrag = Vector3.one * PhysicsConstants.drag * Time.deltaTime;
+            Vector3 horizontalMovement = transform.right * axisX * PhysicsConstants.flyMoveAmount * Time.deltaTime;
+            Vector3 verticalBreak = transform.forward * Mathf.Min(0, axisY) * PhysicsConstants.flyBreakAmount * Time.deltaTime;
+            velocity = velocity - gravity - scaledDrag + horizontalMovement + verticalBreak;
             rigidBaby.velocity = velocity;
         }
     }
@@ -84,5 +90,11 @@ public class LaunchableObject : MonoBehaviour
             velocity = Vector3.Reflect(velocity, normal) * PhysicsConstants.bigBounceCoef;
             lastBounce = Time.time;
         }
+    }
+
+    private void GetInput()
+    {
+        axisY = Input.GetAxis("Vertical");
+        axisX = Input.GetAxis("Horizontal");
     }
 }

@@ -82,8 +82,11 @@ public class ObjectLauncher : MonoBehaviour
 
     private void GetInput()
     {
-        axisY = Input.GetAxis("Vertical");
-        axisX = Input.GetAxis("Horizontal");
+        if (!isLaunched)
+        {
+            axisY = Input.GetAxis("Vertical");
+            axisX = Input.GetAxis("Horizontal");
+        }
     }
 
     private void RotatePreview()
