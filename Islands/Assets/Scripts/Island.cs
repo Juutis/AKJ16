@@ -5,7 +5,7 @@ using UnityEngine;
 public class Island : MonoBehaviour
 {
     [SerializeField]
-    private GameObject cannon;
+    private ObjectLauncher cannon;
     [SerializeField]
     private List<GameObject> hideWhenActive;
 
@@ -29,7 +29,6 @@ public class Island : MonoBehaviour
 
     public void ActivateIsland()
     {
-        cannon.SetActive(true);
         hideWhenActive.ForEach(t => t.SetActive(false));
         GameManager.main.SetCurrentIsland(this);
         GameManager.main.ChangeCannon(cannon);

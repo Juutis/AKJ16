@@ -113,6 +113,7 @@ public class ObjectLauncher : MonoBehaviour
             launchedObject = Instantiate(objectToLaunchPrefab, transform.position, launchPreview.transform.rotation);
             launchedObject.Launch(Mathf.Lerp(launchSpeed.x, launchSpeed.y, powerMeter.GetPower()), this);
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
+            GameManager.main.SetFlyingObject(launchedObject);
         }
     }
 }
