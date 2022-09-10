@@ -8,6 +8,8 @@ public class ObjectLauncher : MonoBehaviour
     private LaunchableObject objectToLaunchPrefab;
     [SerializeField]
     private LaunchPreview launchPreview;
+    [SerializeField]
+    private Cannon cannon;
 
     private float inputMin = 0.01f;
 
@@ -86,13 +88,18 @@ public class ObjectLauncher : MonoBehaviour
     {
         if (Mathf.Abs(axisX) > inputMin)
         {
-            direction.y = Mathf.Clamp(direction.y + axisX * rotateSpeed.x, clampHorizontal.x, clampHorizontal.y);
+            var dirDiff = axisX * rotateSpeed.x * Time.deltaTime;
+            direction.y = Mathf.Clamp(direction.y + dirDiff, clampHorizontal.x, clampHorizontal.y);
+            cannon.RotateRight(dirDiff);
         }
         if (Mathf.Abs(axisY) > inputMin)
         {
-            direction.x = Mathf.Clamp(direction.x - axisY * rotateSpeed.y, clampVertical.x, clampVertical.y);
+            var dirDiff = axisY * rotateSpeed.y * Time.deltaTime;
+            direction.x = Mathf.Clamp(direction.x - dirDiff, clampVertical.x, clampVertical.y);
         }
         launchPreview.DisplayDirection(transform.position, direction);
+        cannon.transform.localEulerAngles = new Vector2(0, direction.y);
+        cannon.Pitch = -direction.x;
         if (isLaunchKeyDown)
         {
             powerMeter.SetTarget(launchPreview.transform);
