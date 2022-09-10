@@ -9,12 +9,15 @@ public class Bird : MonoBehaviour
     private Transform center;
     private Rigidbody body;
     private float randomOffsetY;
+    [SerializeField]
+    private Animator idleAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
         randomOffsetY = Random.Range(-Mathf.PI, Mathf.PI);
+        idleAnim.Play(0, -1, Random.value);
     }
 
     // Update is called once per frame
