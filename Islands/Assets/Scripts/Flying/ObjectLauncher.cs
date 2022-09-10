@@ -10,6 +10,8 @@ public class ObjectLauncher : MonoBehaviour
     private LaunchPreview launchPreview;
     [SerializeField]
     private Cannon cannon;
+    [SerializeField]
+    private ParticleSystem muzzleFlash;
 
     private float inputMin = 0.01f;
 
@@ -113,6 +115,7 @@ public class ObjectLauncher : MonoBehaviour
             launchedObject = Instantiate(objectToLaunchPrefab, transform.position, launchPreview.transform.rotation);
             launchedObject.Launch(Mathf.Lerp(launchSpeed.x, launchSpeed.y, powerMeter.GetPower()), this);
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
+            muzzleFlash.Play();
         }
     }
 }
