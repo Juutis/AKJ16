@@ -40,6 +40,11 @@ public class LauncherPowerMeter : MonoBehaviour
         Reset();
     }
 
+    public float GetPower()
+    {
+        return (float)currentStep / (float)maxSteps;
+    }
+
     private void Update()
     {
         if (isMoving)
