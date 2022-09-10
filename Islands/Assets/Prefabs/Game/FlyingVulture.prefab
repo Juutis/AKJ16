@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 0}
+  idleAnim: {fileID: 4094810454808667793}
 --- !u!54 &1446746650891611700
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -764,6 +765,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b13b2770bfddc4886a8899dfe119cb, type: 3}
+--- !u!95 &4094810454808667793 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7579761806918592979, guid: 07b13b2770bfddc4886a8899dfe119cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5900570235749633858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7344149217798581030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3749424332087059556, guid: 07b13b2770bfddc4886a8899dfe119cb,
