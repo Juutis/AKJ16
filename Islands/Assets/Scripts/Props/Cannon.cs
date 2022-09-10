@@ -22,9 +22,6 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up, -10 * Time.deltaTime);
-        RotateLeft(10 * Time.deltaTime);
-
         PitchBone.localRotation = initialRotation * Quaternion.AngleAxis(-Pitch, Vector3.right);
     }
 

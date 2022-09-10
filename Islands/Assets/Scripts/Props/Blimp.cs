@@ -7,27 +7,27 @@ public class Blimp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player")
         {
-            if (collision.gameObject.TryGetComponent<TestDummy>(out TestDummy dummy))
+            if (collision.gameObject.TryGetComponent<LaunchableObject>(out LaunchableObject launchableObject))
             {
-                dummy.Bounce(collision.collider.ClosestPoint(collision.GetContact(0).point), collision.GetContact(0).normal);
+                launchableObject.Bounce(collision.collider.ClosestPoint(collision.GetContact(0).point), collision.GetContact(0).normal);
             }
         }
     }

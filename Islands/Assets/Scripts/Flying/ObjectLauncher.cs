@@ -8,6 +8,8 @@ public class ObjectLauncher : MonoBehaviour
     private LaunchableObject objectToLaunchPrefab;
     [SerializeField]
     private LaunchPreview launchPreview;
+    [SerializeField]
+    private Cannon cannon;
 
     private float inputMin = 0.01f;
 
@@ -20,14 +22,20 @@ public class ObjectLauncher : MonoBehaviour
     private Vector2 rotateSpeed = new Vector2(2, 3);
 
     [SerializeField]
-    private float launchSpeed = 5f;
+    private Vector2 launchSpeed = new Vector2(12, 24);
+    [SerializeField]
+    private KeyCode launchKey = KeyCode.Space;
+    [SerializeField]
+    private LauncherPowerMeter powerMeter;
     private float axisX;
     private float axisY;
 
     private Vector3 direction;
 
     private bool isLaunched = false;
+    private bool isLaunchKeyDown = false;
     private LaunchableObject launchedObject;
+
 
     private void Start()
     {
@@ -51,16 +59,21 @@ public class ObjectLauncher : MonoBehaviour
     {
         GetInput();
         RotatePreview();
-
         UIManager.main.DisplayLaunchDirection(direction);
         if (Input.GetKeyUp(KeyCode.R))
         { // for debugging
             Reset();
         }
-        if (!isLaunched && Input.GetKeyUp(KeyCode.Space))
+        if (!isLaunchKeyDown && !isLaunched && Input.GetKeyDown(launchKey))
         {
-            isLaunched = true;
+            isLaunchKeyDown = true;
+        }
+        if (!isLaunched && isLaunchKeyDown && Input.GetKeyUp(launchKey))
+        {
             Launch();
+            isLaunched = true;
+            isLaunchKeyDown = false;
+            powerMeter.StopMoving();
         }
 
     }
@@ -75,14 +88,22 @@ public class ObjectLauncher : MonoBehaviour
     {
         if (Mathf.Abs(axisX) > inputMin)
         {
-            direction.y = Mathf.Clamp(direction.y + axisX * rotateSpeed.x, clampHorizontal.x, clampHorizontal.y);
+            var dirDiff = axisX * rotateSpeed.x * Time.deltaTime;
+            direction.y = Mathf.Clamp(direction.y + dirDiff, clampHorizontal.x, clampHorizontal.y);
+            cannon.RotateRight(dirDiff);
         }
         if (Mathf.Abs(axisY) > inputMin)
         {
-            direction.x = Mathf.Clamp(direction.x - axisY * rotateSpeed.y, clampVertical.x, clampVertical.y);
+            var dirDiff = axisY * rotateSpeed.y * Time.deltaTime;
+            direction.x = Mathf.Clamp(direction.x - dirDiff, clampVertical.x, clampVertical.y);
         }
         launchPreview.DisplayDirection(transform.position, direction);
-        Debug.DrawLine(launchPreview.transform.position, launchPreview.transform.forward * 5f, Color.magenta, 0.1f);
+        cannon.transform.localEulerAngles = new Vector2(0, direction.y);
+        cannon.Pitch = -direction.x;
+        if (isLaunchKeyDown)
+        {
+            powerMeter.SetTarget(launchPreview.transform);
+        }
     }
 
     private void Launch()
@@ -90,7 +111,7 @@ public class ObjectLauncher : MonoBehaviour
         if (objectToLaunchPrefab != null)
         {
             launchedObject = Instantiate(objectToLaunchPrefab, transform.position, launchPreview.transform.rotation);
-            launchedObject.Launch(launchSpeed, this);
+            launchedObject.Launch(Mathf.Lerp(launchSpeed.x, launchSpeed.y, powerMeter.GetPower()), this);
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
         }
     }
