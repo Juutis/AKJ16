@@ -40,10 +40,13 @@ public class CameraManager : MonoBehaviour
         ResetFlyingCamera();
         if (launcherVCamTargetTag != "")
         {
-            GameObject followTarget = GameObject.FindGameObjectWithTag(launcherVCamTargetTag);
+            var followTarget = GameObject.FindGameObjectWithTag(launcherVCamTargetTag).transform;
+            followTarget = followTarget.transform.Find("LaunchPreview");
+            var lookAt = followTarget.Find("CameraAimTarget");
             if (followTarget != null)
             {
-                launcherVCam.Follow = followTarget.transform;
+                launcherVCam.Follow = followTarget;
+                launcherVCam.LookAt = lookAt;
             }
         }
         launcherVCam.Priority = maxVCamPriority;

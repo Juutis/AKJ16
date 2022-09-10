@@ -91,8 +91,11 @@ public class ObjectLauncher : MonoBehaviour
         if (Mathf.Abs(axisX) > inputMin)
         {
             var dirDiff = axisX * rotateSpeed.x * Time.deltaTime;
-            direction.y = Mathf.Clamp(direction.y + dirDiff, clampHorizontal.x, clampHorizontal.y);
-            cannon.RotateRight(dirDiff);
+            var oldDir = direction.y;
+            var newDir = direction.y + dirDiff;
+            direction.y = Mathf.Clamp(newDir, clampHorizontal.x, clampHorizontal.y);
+            var realDiff = direction.y - oldDir;
+            cannon.RotateRight(realDiff);
         }
         if (Mathf.Abs(axisY) > inputMin)
         {

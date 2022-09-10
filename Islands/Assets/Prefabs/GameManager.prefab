@@ -371,11 +371,6 @@ PrefabInstance:
       propertyPath: m_DefaultBlend.m_Style
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8203713244317905274, guid: e6e594b1ff3c94d4b996f07cd2555348,
-        type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -10
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2185042176428459636, guid: e6e594b1ff3c94d4b996f07cd2555348, type: 3}
     - {fileID: 6818278131561826240, guid: e6e594b1ff3c94d4b996f07cd2555348, type: 3}
