@@ -18,7 +18,7 @@ public class LaunchableObject : MonoBehaviour
         {
             rigidBaby = GetComponent<Rigidbody>();
         }
-        rigidBaby.AddForce(transform.up * speed);
+        rigidBaby.AddForce(transform.forward * speed);
         isLaunched = true;
     }
 
@@ -26,13 +26,14 @@ public class LaunchableObject : MonoBehaviour
     {
         if (isLaunched)
         {
-            transform.up = rigidBaby.velocity;
+            //transform.up = rigidBaby.velocity;
+            transform.forward = rigidBaby.velocity;
         }
     }
 
-    void OnTriggerEnter(Collider triggerCollider)
+    void OnCollisionEnter(Collision collision)
     {
-        if (triggerCollider.gameObject != null && triggerCollider.gameObject.layer == LayerMask.NameToLayer("Water"))
+        if (collision.gameObject != null && collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             launcher.Reset();
         }

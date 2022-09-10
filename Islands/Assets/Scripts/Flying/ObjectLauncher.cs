@@ -24,10 +24,17 @@ public class ObjectLauncher : MonoBehaviour
     private float axisX;
     private float axisY;
 
-    private Vector3 direction = new Vector3(45, 0, 0);
+    private Vector3 direction;
 
     private bool isLaunched = false;
     private LaunchableObject launchedObject;
+
+    private void Start()
+    {
+        float startHorizontal = Mathf.Lerp(clampHorizontal.x, clampHorizontal.y, 0.5f);
+        float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.5f);
+        direction = new Vector3(startVertical, startHorizontal, 0f);
+    }
 
     public void Reset()
     {
@@ -37,6 +44,7 @@ public class ObjectLauncher : MonoBehaviour
             Destroy(launchedObject.gameObject);
             launchedObject = null;
         }
+        CameraManager.main.LookAtLauncher();
     }
 
     private void Update()
@@ -54,6 +62,7 @@ public class ObjectLauncher : MonoBehaviour
             isLaunched = true;
             Launch();
         }
+
     }
 
     private void GetInput()
@@ -73,6 +82,7 @@ public class ObjectLauncher : MonoBehaviour
             direction.x = Mathf.Clamp(direction.x - axisY * rotateSpeed.y, clampVertical.x, clampVertical.y);
         }
         launchPreview.DisplayDirection(transform.position, direction);
+        Debug.DrawLine(launchPreview.transform.position, launchPreview.transform.forward * 5f, Color.magenta, 0.1f);
     }
 
     private void Launch()
