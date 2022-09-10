@@ -90,12 +90,23 @@ public class ObjectLauncher : MonoBehaviour
     {
         if (Mathf.Abs(axisX) > inputMin)
         {
+            bool canRotate = (axisX > 0 && direction.y < clampHorizontal.y) || (axisX < 0 && direction.y > clampHorizontal.x);
+            if (canRotate)
+            {
+                SoundManager.main.PlaySoundLoop(GameSoundType.TurnHorizontal);
+            }
             var dirDiff = axisX * rotateSpeed.x * Time.deltaTime;
             direction.y = Mathf.Clamp(direction.y + dirDiff, clampHorizontal.x, clampHorizontal.y);
             cannon.RotateRight(dirDiff);
+
         }
         if (Mathf.Abs(axisY) > inputMin)
         {
+            bool canRotate = (axisY < 0 && direction.x < clampVertical.y) || (axisY > 0 && direction.x > clampVertical.x);
+            if (canRotate)
+            {
+                SoundManager.main.PlaySoundLoop(GameSoundType.TurnVertical);
+            }
             var dirDiff = axisY * rotateSpeed.y * Time.deltaTime;
             direction.x = Mathf.Clamp(direction.x - dirDiff, clampVertical.x, clampVertical.y);
         }
@@ -117,6 +128,7 @@ public class ObjectLauncher : MonoBehaviour
             CameraManager.main.FollowFlyingObject(launchedObject.transform);
             muzzleFlash.Play();
             GameManager.main.SetFlyingObject(launchedObject);
+            SoundManager.main.PlaySound(GameSoundType.Boom);
         }
     }
 }

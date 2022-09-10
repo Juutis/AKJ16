@@ -27,13 +27,19 @@ public class LaunchableObject : MonoBehaviour
             rigidBaby = GetComponent<Rigidbody>();
         }
         shoot = true;
+        Invoke("PlayFlyingSound", 1f);
+    }
+
+    public void PlayFlyingSound()
+    {
+
+        SoundManager.main.PlayFlyingSound(launchForceSpeed);
     }
 
     private void Update()
     {
         if (isLaunched)
         {
-            //transform.up = rigidBaby.velocity;
             transform.forward = rigidBaby.velocity;
         }
     }
@@ -45,7 +51,6 @@ public class LaunchableObject : MonoBehaviour
             rigidBaby.useGravity = true;
             isLaunched = true;
             shoot = false;
-            //body.AddForce(body.transform.up * force, ForceMode.Impulse);
             velocity = rigidBaby.transform.forward * launchForceSpeed;
         }
 
@@ -67,6 +72,9 @@ public class LaunchableObject : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             launcher.Reset();
+            SoundManager.main.StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Molsk);
+            return;
         }
         if (collision.collider.tag != "Bounce")
         {
@@ -74,6 +82,9 @@ public class LaunchableObject : MonoBehaviour
             var reflected = Vector3.Reflect(velocity, normal);
             var coef = PhysicsConstants.smallBounceCoef;
             velocity = reflected * coef;
+            SoundManager.main.StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Hit);
+            return;
         }
     }
 
