@@ -97,9 +97,9 @@ public class ObjectLauncher : MonoBehaviour
             var dirDiff = axisY * rotateSpeed.y * Time.deltaTime;
             direction.x = Mathf.Clamp(direction.x - dirDiff, clampVertical.x, clampVertical.y);
         }
-        launchPreview.DisplayDirection(transform.position, direction);
+        launchPreview.DisplayDirection(transform.position, new Vector2(-direction.x, direction.y));
         cannon.transform.localEulerAngles = new Vector2(0, direction.y);
-        cannon.Pitch = -direction.x;
+        cannon.Pitch = direction.x;
         if (isLaunchKeyDown)
         {
             powerMeter.SetTarget(launchPreview.transform);
