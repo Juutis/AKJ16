@@ -8,6 +8,9 @@ public class LaunchableObject : MonoBehaviour
     private bool isLaunched = false;
     private ObjectLauncher launcher;
 
+    private float axisX = 0f;
+    private float axisY = 0f;
+
     private bool shoot = false;
     private float bounceTime = 1f;
     private float lastBounce = 0f;
@@ -27,14 +30,21 @@ public class LaunchableObject : MonoBehaviour
             rigidBaby = GetComponent<Rigidbody>();
         }
         shoot = true;
+        Invoke("PlayFlyingSound", 1f);
+    }
+
+    public void PlayFlyingSound()
+    {
+
+        SoundManager.main.PlayFlyingSound(launchForceSpeed);
     }
 
     private void Update()
     {
         if (isLaunched)
         {
-            //transform.up = rigidBaby.velocity;
             transform.forward = rigidBaby.velocity;
+            GetInput();
         }
     }
 
@@ -45,15 +55,16 @@ public class LaunchableObject : MonoBehaviour
             rigidBaby.useGravity = true;
             isLaunched = true;
             shoot = false;
-            //body.AddForce(body.transform.up * force, ForceMode.Impulse);
             velocity = rigidBaby.transform.forward * launchForceSpeed;
         }
 
         if (isLaunched)
         {
-            velocity = velocity + new Vector3(0, -PhysicsConstants.gravity, 0) * Time.deltaTime;
-            float scaledDrag = PhysicsConstants.drag * Time.deltaTime;
-            velocity = velocity - Vector3.one * scaledDrag;
+            Vector3 gravity = new Vector3(0, PhysicsConstants.gravity, 0) * Time.deltaTime;
+            Vector3 scaledDrag = Vector3.one * PhysicsConstants.drag * Time.deltaTime;
+            Vector3 horizontalMovement = transform.right * axisX * PhysicsConstants.flyMoveAmount * Time.deltaTime;
+            Vector3 verticalBreak = transform.forward * Mathf.Min(0, axisY) * PhysicsConstants.flyBreakAmount * Time.deltaTime;
+            velocity = velocity - gravity - scaledDrag + horizontalMovement + verticalBreak;
             rigidBaby.velocity = velocity;
         }
     }
@@ -67,6 +78,9 @@ public class LaunchableObject : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             launcher.Reset();
+            SoundManager.main.StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Molsk);
+            return;
         }
         if (collision.collider.tag != "Bounce")
         {
@@ -74,6 +88,9 @@ public class LaunchableObject : MonoBehaviour
             var reflected = Vector3.Reflect(velocity, normal);
             var coef = PhysicsConstants.smallBounceCoef;
             velocity = reflected * coef;
+            SoundManager.main.StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Hit);
+            return;
         }
     }
 
@@ -84,5 +101,11 @@ public class LaunchableObject : MonoBehaviour
             velocity = Vector3.Reflect(velocity, normal) * PhysicsConstants.bigBounceCoef;
             lastBounce = Time.time;
         }
+    }
+
+    private void GetInput()
+    {
+        axisY = Input.GetAxis("Vertical");
+        axisX = Input.GetAxis("Horizontal");
     }
 }
