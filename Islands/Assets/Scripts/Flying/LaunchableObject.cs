@@ -66,7 +66,7 @@ public class LaunchableObject : MonoBehaviour
 
         if (isLaunched)
         {
-            Vector3 wind = GameManager.main.GetWind();
+            Vector3 wind = GameManager.main.GetWind() * Time.deltaTime;
             Vector3 gravity = new Vector3(0, PhysicsConstants.gravity, 0) * Time.deltaTime;
             Vector3 scaledDrag = Vector3.one * PhysicsConstants.drag * Time.deltaTime;
             Vector3 horizontalMovement = transform.right * axisX * PhysicsConstants.flyMoveAmount * Time.deltaTime;
