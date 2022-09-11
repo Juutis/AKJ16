@@ -31,9 +31,64 @@ Transform:
   - {fileID: 26169107202359629}
   - {fileID: 5520865422965363729}
   - {fileID: 8309944889328355338}
+  - {fileID: 93195705178687460}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5788466005760195111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93195705178687460}
+  - component: {fileID: 8358471994833559076}
+  - component: {fileID: 8386632320007493375}
+  m_Layer: 0
+  m_Name: water deather
+  m_TagString: DEATH
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93195705178687460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788466005760195111}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 1000, y: 1000, z: 1000}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 26169108684374328}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8358471994833559076
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788466005760195111}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &8386632320007493375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788466005760195111}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &8136797371776976256
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +151,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a299c05bd96ac754b85bd7c6586bbccd, type: 2}
+  - {fileID: 2100000, guid: 34c8b933c5011044786118cb9083d321, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,6 +340,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: -0.98487246
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0.6801995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 5.03745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.84702885
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.87268364
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985046985751853179, guid: f2bd14a4bd8f7644e9d1be1279768212,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 3.0127392
       objectReference: {fileID: 0}
     - target: {fileID: 9189553640071720585, guid: f2bd14a4bd8f7644e9d1be1279768212,
         type: 3}
