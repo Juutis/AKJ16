@@ -31,6 +31,8 @@ public class ObjectLauncher : MonoBehaviour
     private LauncherPowerMeter powerMeter;
     private float axisX;
     private float axisY;
+    private float mouseX;
+    private float mouseY;
 
     private Vector3 direction;
 
@@ -82,10 +84,18 @@ public class ObjectLauncher : MonoBehaviour
 
     private void GetInput()
     {
+        if (Input.GetKey(KeyCode.Mouse1)) {
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+        } else {
+            mouseX = 0;
+            mouseY = 0;
+        }
+
         if (!isLaunched)
         {
-            axisY = Input.GetAxis("Vertical");
-            axisX = Input.GetAxis("Horizontal");
+            axisY = Input.GetAxis("Vertical") + mouseY;
+            axisX = Input.GetAxis("Horizontal") + mouseX;
         }
     }
 
