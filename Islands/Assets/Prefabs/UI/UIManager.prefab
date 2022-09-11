@@ -409,7 +409,7 @@ MonoBehaviour:
   uiPowerMeter: {fileID: 5591057202319337800}
   musicMuted: {fileID: 5118224573029416087}
   sfxMuted: {fileID: 8916289806349377093}
-  muteSfxKey: 115
+  muteSfxKey: 110
   muteMusicKey: 109
 --- !u!1 &1137755634082753904
 GameObject:
