@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8604928580784258205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527214846694573820}
+  m_Layer: 0
+  m_Name: SittingVulture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527214846694573820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604928580784258205}
+  m_LocalRotation: {x: -0, y: -0.029448118, z: -0, w: 0.9995663}
+  m_LocalPosition: {x: 121.194626, y: -41.891113, z: 231.66397}
+  m_LocalScale: {x: 0.9999996, y: 1, z: 0.9999996}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7531175377565886644}
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8002515453413347167
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 1527214846694573820}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -134.3693
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 38.39
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -94.57283
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.111183256
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9937999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 167.233
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa702bcd5f11c9942980971aacc28093,
+        type: 3}
+      propertyPath: m_Name
+      value: VultureSitting
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa702bcd5f11c9942980971aacc28093, type: 3}
+--- !u!4 &7531175377565886644 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fa702bcd5f11c9942980971aacc28093,
+    type: 3}
+  m_PrefabInstance: {fileID: 8002515453413347167}
+  m_PrefabAsset: {fileID: 0}

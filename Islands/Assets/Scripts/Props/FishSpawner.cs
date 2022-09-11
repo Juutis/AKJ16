@@ -24,6 +24,7 @@ public class FishSpawner : MonoBehaviour
             fish.transform.position = new Vector3(-1000, -1000, -1000);
             fishPool.Add(fish);
         }
+        secondsToNextFish = Random.Range(fishSpawnTimeRange.x, fishSpawnTimeRange.y);
     }
 
     // Update is called once per frame
@@ -36,7 +37,11 @@ public class FishSpawner : MonoBehaviour
             fishIndex = (fishIndex + 1) % fishPool.Count;
             var fishBody = fish.GetComponent<Rigidbody>();
             fishBody.velocity = Vector3.zero;
-            fishBody.AddForce((Vector3.up + transform.forward * 0.5f).normalized * 15f, ForceMode.Impulse);
+
+            Vector2 dir2 = Random.insideUnitCircle.normalized;
+            Vector3 dir = new Vector3(dir2.x, 0, dir2.y);
+            float forceStrength = Random.Range(12f, 18f);
+            fishBody.AddForce((Vector3.up + dir * 0.5f).normalized * forceStrength, ForceMode.Impulse);
             lastFishTime = Time.time;
             secondsToNextFish = Random.Range(fishSpawnTimeRange.x, fishSpawnTimeRange.y);
         }
