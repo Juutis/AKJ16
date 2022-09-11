@@ -68,11 +68,11 @@ public class ObjectLauncher : MonoBehaviour
         { // for debugging
             Reset();
         }
-        if (UIManager.main.CanUsePower() && !isLaunchKeyDown && !isLaunched && Input.GetKey(launchKey))
+        if (UIManager.main.CanUsePower() && !isLaunchKeyDown && !isLaunched && (Input.GetKey(launchKey) || Input.GetKey(KeyCode.Mouse0)))
         {
             isLaunchKeyDown = true;
         }
-        if (!isLaunched && isLaunchKeyDown && Input.GetKeyUp(launchKey))
+        if (!isLaunched && isLaunchKeyDown && (Input.GetKeyUp(launchKey) || Input.GetKeyUp(KeyCode.Mouse0)))
         {
             Launch();
             isLaunched = true;
