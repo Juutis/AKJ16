@@ -104,9 +104,10 @@ public class LaunchableObject : MonoBehaviour
             }
 
             Vector3 contactNormal = other.transform.up;
-            float angle = Vector3.Angle(this.rigidBaby.velocity, contactNormal);
-            float minSkipAngle = 80;
-            if (angle > minSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
+            float angle = 90 - (180 - Vector3.Angle(this.rigidBaby.velocity, contactNormal));
+            float maxSkipAngle = 20;
+            float minSkipAngle = 0;
+            if (angle > minSkipAngle && angle < maxSkipAngle  && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
             {
                 Debug.Log($"Skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
                 var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost;
