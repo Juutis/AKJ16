@@ -9,7 +9,7 @@ public class Island : MonoBehaviour
     [SerializeField]
     private List<GameObject> hideWhenActive;
     [SerializeField]
-    private Vector3 windVector;
+    private Wind wind;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,6 @@ public class Island : MonoBehaviour
 
     public Vector3 GetWind()
     {
-        return windVector;
+        return wind.transform.forward * wind.Magnitude;
     }
 }
