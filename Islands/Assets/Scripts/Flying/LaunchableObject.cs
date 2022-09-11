@@ -7,6 +7,9 @@ public class LaunchableObject : MonoBehaviour
     [SerializeField]
     private ParticleSystem sandParticles;
 
+    [SerializeField]
+    private ParticleSystem waterParticles;
+
     private Rigidbody rigidBaby;
     private bool isLaunched = false;
     private ObjectLauncher launcher;
@@ -136,6 +139,9 @@ public class LaunchableObject : MonoBehaviour
             launcher.Reset();
             StopPlayingFlyingSound();
             SoundManager.main.PlaySound(GameSoundType.Molsk);
+            waterParticles.transform.parent = null;
+            waterParticles.transform.rotation = Quaternion.Euler(-90, 0, 0);
+            waterParticles.Play();
         }
     }
 
@@ -216,8 +222,7 @@ public class LaunchableObject : MonoBehaviour
     public void HitGround()
     {
         sandParticles.transform.parent = null;
-        sandParticles.transform.rotation = Quaternion.Euler(-90, 0, 0);//Quaternion.identity;
-        //sandParticles.transform.position = sandParticles.transform.position + Vector3.up * 1f;
+        sandParticles.transform.rotation = Quaternion.Euler(-90, 0, 0);
         sandParticles.Play();
     }
 }
