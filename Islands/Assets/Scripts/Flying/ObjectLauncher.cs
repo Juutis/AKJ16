@@ -66,7 +66,7 @@ public class ObjectLauncher : MonoBehaviour
         { // for debugging
             Reset();
         }
-        if (!isLaunchKeyDown && !isLaunched && Input.GetKeyDown(launchKey))
+        if (UIManager.main.CanUsePower() && !isLaunchKeyDown && !isLaunched && Input.GetKey(launchKey))
         {
             isLaunchKeyDown = true;
         }

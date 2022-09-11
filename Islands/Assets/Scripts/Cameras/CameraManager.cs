@@ -15,14 +15,30 @@ public class CameraManager : MonoBehaviour
     private string launcherVCamTargetTag;
 
     [SerializeField]
+    private CinemachineBrain brain;
+
+    [SerializeField]
     private CinemachineVirtualCamera launcherVCam;
+
     [SerializeField]
     private CinemachineVirtualCamera flyingObjectVCam;
+
+    private CinemachineTransposer launcherTransposer;
+    private CinemachineComposer launcherComposer;
 
     private int maxVCamPriority = 100;
     private int launcherVCamDefaultPriority = 20;
     private int flyingObjectVCamDefaultPriority = 10;
     private Vector3 startFlyingPos;
+
+    bool cameraIsAtLaunchPosition = false;
+    public bool CameraIsAtLaunchPosition
+    {
+        get
+        {
+            return cameraIsAtLaunchPosition;
+        }
+    }
 
     private void Start()
     {
@@ -33,6 +49,8 @@ public class CameraManager : MonoBehaviour
         ResetFlyingCamera();
         ResetLauncherCamera();
         Invoke("LookAtLauncher", 1);
+        launcherTransposer = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
+        launcherComposer = launcherVCam.GetCinemachineComponent<CinemachineComposer>();
     }
 
     public void LookAtLauncher()
@@ -69,6 +87,23 @@ public class CameraManager : MonoBehaviour
         CinemachineTransposer tp = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
         flyingObjectVCam.transform.position = startFlyingPos + tp.m_FollowOffset;
         flyingObjectVCam.Priority = flyingObjectVCamDefaultPriority;
+    }
+
+    private CinemachineVirtualCamera prevVCam;
+    void Update()
+    {
+        CinemachineVirtualCamera currentVCam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        cameraIsAtLaunchPosition = currentVCam == launcherVCam && !brain.IsBlending;
+        //cameraIsAtLaunchPosition = (currentVCam == launcherVCam) && (launcherVCam.transform.position == launcherTransposer.VcamState.FinalPosition) && (launcherVCam.transform.rotation == launcherTransposer.VcamState.FinalOrientation);
+        /*if (prevVCam != currentVCam)
+        {
+            Debug.Log($"Changed VCam to: {currentVCam}");
+        }
+        if (cameraIsAtLaunchPosition)
+        {
+            Debug.Log($"Camera is at {launcherTransposer.VcamState.FinalPosition}");
+        }
+        prevVCam = currentVCam;*/
     }
 
 }
