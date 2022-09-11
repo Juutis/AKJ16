@@ -43,6 +43,11 @@ public class UIManager : MonoBehaviour
         uiPowerMeter.ClearMeter();
     }
 
+    public bool CanUsePower()
+    {
+        return uiPowerMeter.CanUsePower;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(muteSfxKey))

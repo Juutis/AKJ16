@@ -31,6 +31,8 @@ public class ObjectLauncher : MonoBehaviour
     private LauncherPowerMeter powerMeter;
     private float axisX;
     private float axisY;
+    private float mouseX;
+    private float mouseY;
 
     private Vector3 direction;
 
@@ -42,7 +44,7 @@ public class ObjectLauncher : MonoBehaviour
     private void Start()
     {
         float startHorizontal = Mathf.Lerp(clampHorizontal.x, clampHorizontal.y, 0.5f);
-        float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.5f);
+        float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.1f);
         direction = new Vector3(startVertical, startHorizontal, 0f);
         UIManager.main.InitPowerMeter(launchKey);
     }
@@ -66,11 +68,11 @@ public class ObjectLauncher : MonoBehaviour
         { // for debugging
             Reset();
         }
-        if (!isLaunchKeyDown && !isLaunched && Input.GetKeyDown(launchKey))
+        if (UIManager.main.CanUsePower() && !isLaunchKeyDown && !isLaunched && (Input.GetKey(launchKey) || Input.GetKey(KeyCode.Mouse0)))
         {
             isLaunchKeyDown = true;
         }
-        if (!isLaunched && isLaunchKeyDown && Input.GetKeyUp(launchKey))
+        if (!isLaunched && isLaunchKeyDown && (Input.GetKeyUp(launchKey) || Input.GetKeyUp(KeyCode.Mouse0)))
         {
             Launch();
             isLaunched = true;
@@ -82,15 +84,30 @@ public class ObjectLauncher : MonoBehaviour
 
     private void GetInput()
     {
+        if (!UIManager.main.CanUsePower())
+        {
+            return;
+        }
+        if (Input.GetKey(KeyCode.Mouse1)) {
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+        } else {
+            mouseX = 0;
+            mouseY = 0;
+        }
         if (!isLaunched)
         {
-            axisY = Input.GetAxis("Vertical");
-            axisX = Input.GetAxis("Horizontal");
+            axisY = Input.GetAxis("Vertical") + mouseY;
+            axisX = Input.GetAxis("Horizontal") + mouseX;
         }
     }
 
     private void RotatePreview()
     {
+        if (!UIManager.main.CanUsePower())
+        {
+            return;
+        }
         if (Mathf.Abs(axisX) > inputMin)
         {
             bool canRotate = (axisX > 0 && direction.y < clampHorizontal.y) || (axisX < 0 && direction.y > clampHorizontal.x);
