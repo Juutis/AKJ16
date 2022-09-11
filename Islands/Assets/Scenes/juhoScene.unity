@@ -547,6 +547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6624593698607413235, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
+      propertyPath: startingIsland
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624593698607413235, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
       propertyPath: islands.Array.data[2]
       value: 
       objectReference: {fileID: 54606409}
