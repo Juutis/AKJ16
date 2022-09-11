@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &230789271 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1396902754565001672, guid: de6b0f36b02918f44b65baf4783e08c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538826574473465620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &430007076 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5419483516238430267, guid: 4d2ffce953354214c9f4a79e99aec541,
@@ -137,6 +143,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 17892825630892883, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 17892825630892883, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200
+      objectReference: {fileID: 0}
     - target: {fileID: 440957712891219366, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_Loop
@@ -447,6 +463,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -97.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3701274531997843462, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 230789271}
     - target: {fileID: 4836586239558588915, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_AnchorMax.y

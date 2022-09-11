@@ -187,7 +187,7 @@ Transform:
   - {fileID: 8723445618319490872}
   - {fileID: 797614931743731995}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6528400536525296860
 MonoBehaviour:
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launcherVCamTargetTag: ObjectLauncher
+  brain: {fileID: 7704001063717168902}
   launcherVCam: {fileID: 8907225658935817877}
   flyingObjectVCam: {fileID: 881623558351090183}
 --- !u!1 &802411443918355874
