@@ -540,6 +540,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1712775408871945886}
     m_Modifications:
+    - target: {fileID: 473787290209337581, guid: 386085dbb8a84914c83a159ae981a2b3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4119cc567d6f6c04eb6a9bdcb9b22446, type: 2}
+    - target: {fileID: 5920859438373844019, guid: 386085dbb8a84914c83a159ae981a2b3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eb629622f16e6c746907687926e5dbbc, type: 2}
     - target: {fileID: 6019507078271253009, guid: 386085dbb8a84914c83a159ae981a2b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -599,6 +609,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Island1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683673829154391319, guid: 386085dbb8a84914c83a159ae981a2b3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683673829154391319, guid: 386085dbb8a84914c83a159ae981a2b3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683673829154391319, guid: 386085dbb8a84914c83a159ae981a2b3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
