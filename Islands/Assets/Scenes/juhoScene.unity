@@ -491,22 +491,37 @@ PrefabInstance:
     - target: {fileID: 1155847085936448288, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}
       propertyPath: pitchSpeed
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1155847085936448288, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}
       propertyPath: pitchRange.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1155847085936448288, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}
       propertyPath: pitchRange.y
-      value: -3
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229117844893901855, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: gameSounds.Array.data[2].sounds.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3854162097502032817, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419483516238430267, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419483516238430267, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9108534602037267410, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}
