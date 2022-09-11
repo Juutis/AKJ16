@@ -8,17 +8,17 @@ public class SoundManager : MonoBehaviour
     public static SoundManager main;
     private void Awake()
     {
+        muteMusic = PlayerPrefs.GetInt("muteMusic") == 1;
+        muteSfx = PlayerPrefs.GetInt("muteSfx") == 1;
         main = this;
     }
 
     [SerializeField]
     private AudioSource music;
 
-    [SerializeField]
     private bool muteMusic;
-    public bool MusicMuted { get { return muteMusic; } }
-    [SerializeField]
     private bool muteSfx;
+    public bool MusicMuted { get { return muteMusic; } }
     public bool SfxMuted { get { return muteSfx; } }
     [SerializeField]
     private LerpSoundPitch flyingSound;
@@ -26,11 +26,13 @@ public class SoundManager : MonoBehaviour
     public void ToggleSfx()
     {
         muteSfx = !muteSfx;
+        PlayerPrefs.SetInt("muteSfx", muteSfx ? 1 : 0);
     }
 
     public void ToggleMusic()
     {
         muteMusic = !muteMusic;
+        PlayerPrefs.SetInt("muteMusic", muteMusic ? 1 : 0);
     }
 
     public void PlayFlyingSound(float flightSpeed)
