@@ -109,7 +109,6 @@ public class LaunchableObject : MonoBehaviour
             float minSkipAngle = 0;
             if (angle > minSkipAngle && angle < maxSkipAngle  && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
             {
-                Debug.Log($"Skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
                 var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost;
                 velocity = new Vector3(velocity.x, skipYVel, velocity.z) * PhysicsConstants.smallSkipDrag;
                 lastSkip = Time.time;
@@ -117,8 +116,6 @@ public class LaunchableObject : MonoBehaviour
             }
             else
             {
-                // ContactPoint pointOfContact2 = collision.GetContact(0);
-                Debug.Log($"Not skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
                 launcher.Reset();
                 SoundManager.main.StopPlayingFlyingSound();
                 SoundManager.main.PlaySound(GameSoundType.Molsk);

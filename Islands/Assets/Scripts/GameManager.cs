@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager main;
     [SerializeField]
+    private int startingIsland = 0;
+    [SerializeField]
     private List<Island> islands;
     [SerializeField]
     private ObjectLauncher currentCannon;
@@ -22,7 +24,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentIsland = islands[0];
+        currentIsland = islands[startingIsland];
+        var cannon = currentIsland.GetCannon();
+        if (currentCannon != cannon)
+        {
+            currentCannon.gameObject.SetActive(false);
+            currentCannon = cannon;
+            currentCannon.gameObject.SetActive(true);
+            currentCannon.Reset();
+        }
     }
 
     // Update is called once per frame
