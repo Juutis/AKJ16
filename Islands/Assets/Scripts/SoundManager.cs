@@ -12,10 +12,33 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField]
+    private AudioSource music;
+
+    [SerializeField]
+    private bool muteMusic;
+    public bool MusicMuted { get { return muteMusic; } }
+    [SerializeField]
+    private bool muteSfx;
+    public bool SfxMuted { get { return muteSfx; } }
+    [SerializeField]
     private LerpSoundPitch flyingSound;
+
+    public void ToggleSfx()
+    {
+        muteSfx = !muteSfx;
+    }
+
+    public void ToggleMusic()
+    {
+        muteMusic = !muteMusic;
+    }
 
     public void PlayFlyingSound(float flightSpeed)
     {
+        if (muteSfx)
+        {
+            return;
+        }
         flyingSound.StartPitching(flightSpeed);
     }
 
@@ -29,6 +52,10 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(GameSoundType soundType)
     {
+        if (muteSfx)
+        {
+            return;
+        }
         GameSound gameSound = gameSounds.Where(sound => sound.Type == soundType).FirstOrDefault();
         if (gameSound != null)
         {
@@ -43,6 +70,10 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySoundLoop(GameSoundType soundType)
     {
+        if (muteSfx)
+        {
+            return;
+        }
         GameSound gameSound = gameSounds.Where(sound => sound.Type == soundType && sound.Loop).FirstOrDefault();
         if (gameSound != null)
         {
@@ -64,6 +95,18 @@ public class SoundManager : MonoBehaviour
             {
                 audio.Pause();
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (muteMusic && music.isPlaying)
+        {
+            music.Pause();
+        }
+        if (!muteMusic && !music.isPlaying)
+        {
+            music.UnPause();
         }
     }
 }

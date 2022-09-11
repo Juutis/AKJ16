@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &430007076 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5419483516238430267, guid: 4d2ffce953354214c9f4a79e99aec541,
+    type: 3}
+  m_PrefabInstance: {fileID: 8505666084456624302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1538826574473465620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,6 +447,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6289142175205625196, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6643608941148512035, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: timePerStep
@@ -502,6 +513,21 @@ PrefabInstance:
         type: 3}
       propertyPath: pitchRange.y
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229117844893901855, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 430007076}
+    - target: {fileID: 3229117844893901855, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: muteSfx
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229117844893901855, guid: 4d2ffce953354214c9f4a79e99aec541,
+        type: 3}
+      propertyPath: muteMusic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3229117844893901855, guid: 4d2ffce953354214c9f4a79e99aec541,
         type: 3}

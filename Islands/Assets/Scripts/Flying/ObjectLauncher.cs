@@ -120,7 +120,7 @@ public class ObjectLauncher : MonoBehaviour
         cannon.Pitch = direction.x;
         if (isLaunchKeyDown)
         {
-            powerMeter.SetTarget(launchPreview.transform);
+            powerMeter.StartMoving();
         }
     }
 
