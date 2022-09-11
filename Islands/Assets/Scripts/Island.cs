@@ -8,6 +8,8 @@ public class Island : MonoBehaviour
     private ObjectLauncher cannon;
     [SerializeField]
     private List<GameObject> hideWhenActive;
+    [SerializeField]
+    private Vector3 windVector;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,10 @@ public class Island : MonoBehaviour
         hideWhenActive.ForEach(t => t.SetActive(false));
         GameManager.main.SetCurrentIsland(this);
         GameManager.main.ChangeCannon(cannon);
+    }
+
+    public Vector3 GetWind()
+    {
+        return windVector;
     }
 }

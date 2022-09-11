@@ -55,4 +55,9 @@ public class GameManager : MonoBehaviour
     {
         this.flyingObject = flyingObject;
     }
+
+    public Vector3 GetWind()
+    {
+        return this.currentIsland.GetWind();
+    }
 }
