@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIPowerMeter uiPowerMeter;
     [SerializeField]
+    private UIScore uiScore;
+    [SerializeField]
     private UILauncherCameraSwitch uiLauncherCameraSwitch;
 
     [SerializeField]
@@ -30,16 +32,33 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private KeyCode toggleLauncherVCamKey;
 
+    int score = 0;
+
     void Start()
     {
         sfxMuted.Init(SoundManager.main.SfxMuted, muteSfxKey);
         musicMuted.Init(SoundManager.main.MusicMuted, muteMusicKey);
-#if !UNITY_EDITOR
-        uiMainMenu.gameObject.SetActive(true);
-#else
-        CameraManager.main.Init();
-#endif
+        if (Application.isEditor)
+        {
+            CameraManager.main.Init();
+        }
+        else
+        {
+            uiMainMenu.gameObject.SetActive(true);
+        }
         uiLauncherCameraSwitch.Init(toggleLauncherVCamKey, 1);
+        uiScore.SetScore(0);
+    }
+
+    public void IncreaseScore()
+    {
+        score += 1;
+        uiScore.SetScore(score);
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     public void ShowTheEnd()

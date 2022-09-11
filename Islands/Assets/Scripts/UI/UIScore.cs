@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPowerMeter : MonoBehaviour
+public class UIScore : MonoBehaviour
 {
     [SerializeField]
-    private Image imgMeter;
-    [SerializeField]
-    private Image oldImgMeter;
-    [SerializeField]
-    private Text txtKey;
-
+    private Text txtScore;
     [SerializeField]
     private Animator animator;
-
-    private bool canUsePower = false;
-    public bool CanUsePower { get { return canUsePower; } }
-
     private bool isShown = false;
+    public void SetScore(int score)
+    {
+        txtScore.text = $"{score}";
+    }
 
     public void Show()
     {
@@ -27,29 +22,7 @@ public class UIPowerMeter : MonoBehaviour
 
     public void Hide()
     {
-        canUsePower = false;
         animator.SetTrigger("Hide");
-    }
-
-    public void ShowFinished()
-    {
-        canUsePower = true;
-    }
-
-    public void Init(KeyCode key)
-    {
-        txtKey.text = $"{key}";
-    }
-
-    public void UpdateMeter(float amount)
-    {
-        imgMeter.fillAmount = amount;
-    }
-
-    public void ClearMeter()
-    {
-        oldImgMeter.fillAmount = imgMeter.fillAmount;
-        imgMeter.fillAmount = 0;
     }
 
     private void Update()
