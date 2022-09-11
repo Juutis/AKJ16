@@ -29,6 +29,11 @@ public class LaunchableObject : MonoBehaviour
     private float previousYPos;
     private float minYPosForFallingSound = 5f;
     private bool flyingSoundIsPlaying = false;
+    private bool spaceReady = true;
+    private float spacePressed = 0;
+    private float waterWasHit = 0;
+    private float skipToleranceBefore = 0.5f;
+    private float skipToleranceAfter = 0.25f;
 
     public void Launch(float launchForceSpeed, ObjectLauncher launcher)
     {
@@ -122,37 +127,60 @@ public class LaunchableObject : MonoBehaviour
                 crashed = true;
             }
         }
+
+        if (collision.collider.tag == "DEATH")
+        {
+            launcher.Reset();
+            StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Molsk);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
-            if (Time.time - lastSkip < skipTime)
-            {
-                return;
-            }
-
-            Vector3 contactNormal = other.transform.up;
-            float angle = 90 - (180 - Vector3.Angle(this.rigidBaby.velocity, contactNormal));
-            float maxSkipAngle = 20;
-            float minSkipAngle = 0;
-            if (angle > minSkipAngle && angle < maxSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
-            {
-                var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost;
-                velocity = new Vector3(velocity.x, skipYVel, velocity.z) * PhysicsConstants.smallSkipDrag;
-                lastSkip = Time.time;
-                skipCount++;
-                StopPlayingFlyingSound();
-                SoundManager.main.PlaySound(GameSoundType.Skip);
-            }
-            else
-            {
-                launcher.Reset();
-                StopPlayingFlyingSound();
-                SoundManager.main.PlaySound(GameSoundType.Molsk);
-            }
+            waterWasHit = Time.time;
+            HandleSkipping();
         }
+    }
+
+    private void HandleSkipping() {
+        if (Time.time - lastSkip < skipTime)
+        {
+            return;
+        }
+        if (spacePressed < waterWasHit - skipToleranceBefore) {
+            return;
+        }
+        if (spacePressed > waterWasHit + skipToleranceAfter) {
+            return;
+        }
+
+        float skipPrecision = 0;
+        if (spacePressed < waterWasHit) {
+            skipPrecision = 1.0f - (waterWasHit - spacePressed) / skipToleranceBefore;
+        } else {
+            skipPrecision = 1.0f - (spacePressed - waterWasHit) / skipToleranceAfter;
+        }
+
+        Vector3 contactNormal = Vector3.up;
+        float angle = 90 - (180 - Vector3.Angle(this.rigidBaby.velocity, contactNormal));
+        skipPrecision *= (1.0f - angle/80.0f);
+        float maxSkipAngle = 80;
+        float minSkipAngle = 0;
+        Debug.Log(skipPrecision);
+        if (angle > minSkipAngle && angle < maxSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
+        {
+            var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost * skipPrecision;
+            var dragFactor = Mathf.Lerp(PhysicsConstants.smallSkipDragMin, PhysicsConstants.smallSkipDragMax, skipPrecision);
+            velocity = new Vector3(velocity.x, skipYVel, velocity.z) * dragFactor;
+            lastSkip = Time.time;
+            skipCount++;
+            StopPlayingFlyingSound();
+            SoundManager.main.PlaySound(GameSoundType.Skip);
+        }
+
     }
 
     public void Bounce(Vector3 point, Vector3 normal)
@@ -168,5 +196,17 @@ public class LaunchableObject : MonoBehaviour
     {
         axisY = Input.GetAxis("Vertical");
         axisX = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) {
+            if (spaceReady) {
+                spaceReady = false;
+                spacePressed = Time.time;
+                Invoke("ReadySpace", 1.0f);
+                HandleSkipping();
+            }
+        }
+    }
+
+    private void ReadySpace() {
+        spaceReady = true;
     }
 }
