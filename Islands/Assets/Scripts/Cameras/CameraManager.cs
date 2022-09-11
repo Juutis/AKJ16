@@ -119,7 +119,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         CinemachineVirtualCamera currentVCam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-        cameraIsAtLaunchPosition = currentVCam == currentLauncherVCam && !brain.IsBlending;
+        cameraIsAtLaunchPosition = currentVCam != null && currentVCam == currentLauncherVCam && !brain.IsBlending;
     }
 
 }

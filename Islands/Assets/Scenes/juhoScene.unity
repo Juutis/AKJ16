@@ -201,18 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1804485034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2049013282128296771, guid: de6b0f36b02918f44b65baf4783e08c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1538826574473465620}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2541f29fd875a2349bd1126cd8afd555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1538826574473465620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,6 +374,11 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1383272325294966710, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1538826574472018756, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -536,6 +529,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2897885631032943715, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2997188204523014502, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_Damping
@@ -631,11 +629,11 @@ PrefabInstance:
       propertyPath: toggleLauncherVCamKey
       value: 120
       objectReference: {fileID: 0}
-    - target: {fileID: 5711803818028930779, guid: de6b0f36b02918f44b65baf4783e08c2,
+    - target: {fileID: 5780052612379900870, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
-      propertyPath: uiLauncherCameraSwitch
-      value: 
-      objectReference: {fileID: 1804485034}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6223599941656002221, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -714,6 +712,11 @@ PrefabInstance:
     - target: {fileID: 7448310762116017988, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778972904940382938, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7855643966271141800, guid: de6b0f36b02918f44b65baf4783e08c2,

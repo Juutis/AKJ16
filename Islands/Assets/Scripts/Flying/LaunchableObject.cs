@@ -59,6 +59,7 @@ public class LaunchableObject : MonoBehaviour
         crashStarted = 0f;
         crashed = false;
         previousYPos = transform.position.y;
+        UIManager.main.IncreaseScore();
     }
 
     public void PlayFlyingSound()
@@ -157,28 +158,34 @@ public class LaunchableObject : MonoBehaviour
         }
     }
 
-    private void HandleSkipping() {
+    private void HandleSkipping()
+    {
         if (Time.time - lastSkip < skipTime)
         {
             return;
         }
-        if (spacePressed < waterWasHit - skipToleranceBefore) {
+        if (spacePressed < waterWasHit - skipToleranceBefore)
+        {
             return;
         }
-        if (spacePressed > waterWasHit + skipToleranceAfter) {
+        if (spacePressed > waterWasHit + skipToleranceAfter)
+        {
             return;
         }
 
         float skipPrecision = 0;
-        if (spacePressed < waterWasHit) {
+        if (spacePressed < waterWasHit)
+        {
             skipPrecision = 1.0f - (waterWasHit - spacePressed) / skipToleranceBefore;
-        } else {
+        }
+        else
+        {
             skipPrecision = 1.0f - (spacePressed - waterWasHit) / skipToleranceAfter;
         }
 
         Vector3 contactNormal = Vector3.up;
         float angle = 90 - (180 - Vector3.Angle(this.rigidBaby.velocity, contactNormal));
-        skipPrecision *= (1.0f - angle/80.0f);
+        skipPrecision *= (1.0f - angle / 80.0f);
         float maxSkipAngle = 80;
         float minSkipAngle = 0;
         Debug.Log(skipPrecision);
@@ -214,8 +221,10 @@ public class LaunchableObject : MonoBehaviour
     {
         axisY = Input.GetAxis("Vertical");
         axisX = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) {
-            if (spaceReady) {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (spaceReady)
+            {
                 spaceReady = false;
                 spacePressed = Time.time;
                 Invoke("ReadySpace", 1.0f);
@@ -224,7 +233,8 @@ public class LaunchableObject : MonoBehaviour
         }
     }
 
-    private void ReadySpace() {
+    private void ReadySpace()
+    {
         spaceReady = true;
     }
 
