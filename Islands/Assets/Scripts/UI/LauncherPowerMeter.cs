@@ -23,7 +23,6 @@ public class LauncherPowerMeter : MonoBehaviour
         {
             return;
         }
-        UIManager.main.ClearPowerMeter();
         isMoving = true;
     }
     public void Reset()
@@ -33,6 +32,7 @@ public class LauncherPowerMeter : MonoBehaviour
     public void StopMoving()
     {
         isMoving = false;
+        UIManager.main.ClearPowerMeter();
         Reset();
     }
 

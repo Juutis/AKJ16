@@ -44,6 +44,7 @@ public class ObjectLauncher : MonoBehaviour
         float startHorizontal = Mathf.Lerp(clampHorizontal.x, clampHorizontal.y, 0.5f);
         float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.5f);
         direction = new Vector3(startVertical, startHorizontal, 0f);
+        UIManager.main.InitPowerMeter(launchKey);
     }
 
     public void Reset()
@@ -61,7 +62,6 @@ public class ObjectLauncher : MonoBehaviour
     {
         GetInput();
         RotatePreview();
-        UIManager.main.DisplayLaunchDirection(direction);
         if (Input.GetKeyUp(KeyCode.R))
         { // for debugging
             Reset();

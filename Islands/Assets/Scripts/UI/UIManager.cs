@@ -13,11 +13,24 @@ public class UIManager : MonoBehaviour
     private UILaunchDirection uiLaunchDirection;
     [SerializeField]
     private UIPowerMeter uiPowerMeter;
+    [SerializeField]
+    private UIMuteStatus musicMuted;
+    [SerializeField]
+    private UIMuteStatus sfxMuted;
+    [SerializeField]
+    private KeyCode muteSfxKey;
+    [SerializeField]
+    private KeyCode muteMusicKey;
 
-
-    public void DisplayLaunchDirection(Vector3 direction)
+    void Start()
     {
-        uiLaunchDirection.Display(direction);
+        sfxMuted.Init(SoundManager.main.SfxMuted, muteSfxKey);
+        musicMuted.Init(SoundManager.main.MusicMuted, muteMusicKey);
+    }
+
+    public void InitPowerMeter(KeyCode key)
+    {
+        uiPowerMeter.Init(key);
     }
 
     public void UpdatePowerMeter(float amount)
@@ -28,5 +41,19 @@ public class UIManager : MonoBehaviour
     public void ClearPowerMeter()
     {
         uiPowerMeter.ClearMeter();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(muteSfxKey))
+        {
+            SoundManager.main.ToggleSfx();
+            sfxMuted.Toggle();
+        }
+        if (Input.GetKeyDown(muteMusicKey))
+        {
+            SoundManager.main.ToggleMusic();
+            musicMuted.Toggle();
+        }
     }
 }
