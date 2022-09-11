@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LaunchableObject : MonoBehaviour
 {
+    [SerializeField]
+    private ParticleSystem sandParticles;
+
     private Rigidbody rigidBaby;
     private bool isLaunched = false;
     private ObjectLauncher launcher;
@@ -208,5 +211,13 @@ public class LaunchableObject : MonoBehaviour
 
     private void ReadySpace() {
         spaceReady = true;
+    }
+
+    public void HitGround()
+    {
+        sandParticles.transform.parent = null;
+        sandParticles.transform.rotation = Quaternion.Euler(-90, 0, 0);//Quaternion.identity;
+        //sandParticles.transform.position = sandParticles.transform.position + Vector3.up * 1f;
+        sandParticles.Play();
     }
 }

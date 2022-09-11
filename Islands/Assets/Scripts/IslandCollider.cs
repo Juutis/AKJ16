@@ -28,6 +28,11 @@ public class IslandCollider : MonoBehaviour
         if (collision.collider.tag == "Player")
         {
             island.ActivateIsland();
+            var player = collision?.gameObject?.GetComponent<LaunchableObject>();
+            if (player != null)
+            {
+                player.HitGround();
+            }
         }
     }
 }
