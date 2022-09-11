@@ -6,7 +6,7 @@ public class FishSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject fishPrefab;
-    private Vector2 fishSpawnTimeRange = new Vector2(0.5f, 3f);
+    private Vector2 fishSpawnTimeRange = new Vector2(0.5f, 6f);
     private float secondsToNextFish = 3f;
     private float lastFishTime = 0f;
 
