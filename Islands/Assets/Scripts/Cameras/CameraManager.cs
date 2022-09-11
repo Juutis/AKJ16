@@ -20,11 +20,11 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera launcherVCam;
 
-    [SerializeField]
-    private CinemachineVirtualCamera flyingObjectVCam;
 
-    private CinemachineTransposer launcherTransposer;
-    private CinemachineComposer launcherComposer;
+    [SerializeField]
+    private List<CinemachineVirtualCamera> flyingObjectVCams;
+    private CinemachineVirtualCamera currentFlyingObjectVCam;
+
 
     private int maxVCamPriority = 100;
     private int launcherVCamDefaultPriority = 20;
@@ -46,11 +46,10 @@ public class CameraManager : MonoBehaviour
     }
     private void Init()
     {
+        currentFlyingObjectVCam = flyingObjectVCams[Random.Range(0, flyingObjectVCams.Count - 1)];
         ResetFlyingCamera();
         ResetLauncherCamera();
         Invoke("LookAtLauncher", 1);
-        launcherTransposer = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
-        launcherComposer = launcherVCam.GetCinemachineComponent<CinemachineComposer>();
     }
 
     public void LookAtLauncher()
@@ -72,9 +71,13 @@ public class CameraManager : MonoBehaviour
 
     public void FollowFlyingObject(Transform objectTransform)
     {
-        flyingObjectVCam.Follow = objectTransform.transform;
-        flyingObjectVCam.LookAt = objectTransform.transform;
-        flyingObjectVCam.Priority = maxVCamPriority;
+        currentFlyingObjectVCam = flyingObjectVCams[Random.Range(0, flyingObjectVCams.Count - 1)];
+        CinemachineTransposer tp = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
+        currentFlyingObjectVCam.transform.position = startFlyingPos + tp.m_FollowOffset;
+        currentFlyingObjectVCam.Follow = objectTransform.transform;
+        currentFlyingObjectVCam.LookAt = objectTransform.transform;
+        currentFlyingObjectVCam.Priority = maxVCamPriority;
+
         startFlyingPos = objectTransform.position;
     }
 
@@ -85,8 +88,8 @@ public class CameraManager : MonoBehaviour
     public void ResetFlyingCamera()
     {
         CinemachineTransposer tp = launcherVCam.GetCinemachineComponent<CinemachineTransposer>();
-        flyingObjectVCam.transform.position = startFlyingPos + tp.m_FollowOffset;
-        flyingObjectVCam.Priority = flyingObjectVCamDefaultPriority;
+        currentFlyingObjectVCam.transform.position = startFlyingPos + tp.m_FollowOffset;
+        currentFlyingObjectVCam.Priority = flyingObjectVCamDefaultPriority;
     }
 
     private CinemachineVirtualCamera prevVCam;
@@ -94,16 +97,6 @@ public class CameraManager : MonoBehaviour
     {
         CinemachineVirtualCamera currentVCam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
         cameraIsAtLaunchPosition = currentVCam == launcherVCam && !brain.IsBlending;
-        //cameraIsAtLaunchPosition = (currentVCam == launcherVCam) && (launcherVCam.transform.position == launcherTransposer.VcamState.FinalPosition) && (launcherVCam.transform.rotation == launcherTransposer.VcamState.FinalOrientation);
-        /*if (prevVCam != currentVCam)
-        {
-            Debug.Log($"Changed VCam to: {currentVCam}");
-        }
-        if (cameraIsAtLaunchPosition)
-        {
-            Debug.Log($"Camera is at {launcherTransposer.VcamState.FinalPosition}");
-        }
-        prevVCam = currentVCam;*/
     }
 
 }
