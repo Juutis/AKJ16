@@ -12,8 +12,13 @@ public class LaunchableObject : MonoBehaviour
     private float axisY = 0f;
 
     private bool shoot = false;
-    private float bounceTime = 1f;
+    private float bounceTime = 0.33f;
     private float lastBounce = 0f;
+
+    private float lastSkip = 0f;
+    private float skipTime = 0.33f;
+    public int skipCount = 0;
+
     private Vector3 velocity;
     private float launchForceSpeed;
 
@@ -30,6 +35,7 @@ public class LaunchableObject : MonoBehaviour
             rigidBaby = GetComponent<Rigidbody>();
         }
         shoot = true;
+        skipCount = 0;
         Invoke("PlayFlyingSound", 1f);
     }
 
@@ -75,13 +81,7 @@ public class LaunchableObject : MonoBehaviour
         {
             return;
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Water"))
-        {
-            launcher.Reset();
-            SoundManager.main.StopPlayingFlyingSound();
-            SoundManager.main.PlaySound(GameSoundType.Molsk);
-            return;
-        }
+        
         if (collision.collider.tag != "Bounce")
         {
             var normal = collision.GetContact(0).normal;
@@ -90,7 +90,37 @@ public class LaunchableObject : MonoBehaviour
             velocity = reflected * coef;
             SoundManager.main.StopPlayingFlyingSound();
             SoundManager.main.PlaySound(GameSoundType.Hit);
-            return;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            if (Time.time - lastSkip < skipTime)
+            {
+                return;
+            }
+
+            Vector3 contactNormal = other.transform.up;
+            float angle = Vector3.Angle(this.rigidBaby.velocity, contactNormal);
+            float minSkipAngle = 80;
+            if (angle > minSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
+            {
+                Debug.Log($"Skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
+                var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost;
+                velocity = new Vector3(velocity.x, skipYVel, velocity.z) * PhysicsConstants.smallSkipDrag;
+                lastSkip = Time.time;
+                skipCount++;
+            }
+            else
+            {
+                // ContactPoint pointOfContact2 = collision.GetContact(0);
+                Debug.Log($"Not skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
+                launcher.Reset();
+                SoundManager.main.StopPlayingFlyingSound();
+                SoundManager.main.PlaySound(GameSoundType.Molsk);
+            }
         }
     }
 
