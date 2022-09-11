@@ -79,7 +79,7 @@ public class LaunchableObject : MonoBehaviour
             {
                 PlayFlyingSound();
             }
-            Vector3 wind = GameManager.main.GetWind();
+            Vector3 wind = GameManager.main.GetWind() * Time.deltaTime;
             Vector3 gravity = new Vector3(0, PhysicsConstants.gravity, 0) * Time.deltaTime;
             Vector3 scaledDrag = Vector3.one * PhysicsConstants.drag * Time.deltaTime;
             Vector3 horizontalMovement = transform.right * axisX * PhysicsConstants.flyMoveAmount * Time.deltaTime;
@@ -123,7 +123,6 @@ public class LaunchableObject : MonoBehaviour
             float minSkipAngle = 0;
             if (angle > minSkipAngle && angle < maxSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
             {
-                Debug.Log($"Skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
                 var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost;
                 velocity = new Vector3(velocity.x, skipYVel, velocity.z) * PhysicsConstants.smallSkipDrag;
                 lastSkip = Time.time;
@@ -133,8 +132,6 @@ public class LaunchableObject : MonoBehaviour
             }
             else
             {
-                // ContactPoint pointOfContact2 = collision.GetContact(0);
-                Debug.Log($"Not skipping {angle}, {this.rigidBaby.velocity.x}, {this.rigidBaby.velocity.y}, {this.rigidBaby.velocity.z} | {contactNormal.x}, {contactNormal.y}, {contactNormal.z}");
                 launcher.Reset();
                 StopPlayingFlyingSound();
                 SoundManager.main.PlaySound(GameSoundType.Molsk);

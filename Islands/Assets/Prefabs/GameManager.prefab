@@ -163,11 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb22d13a81ab18a439f39e9b1c3df575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingIsland: 0
   islands:
   - {fileID: 3391158972277748254}
   - {fileID: 2389957793389180795}
   - {fileID: 544842269096843442}
   - {fileID: 8252946391351957940}
+  - {fileID: 1603569671240914573}
   currentCannon: {fileID: 925728982996841128}
 --- !u!1001 &1515454917939575797
 PrefabInstance:
@@ -270,6 +272,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1515454917939575797}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1603569671240914573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 236153284749929848, guid: 54f07e3e9b1edfb4daa18ca83e96740e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1515454917939575797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00de57b2d49a4a409a1a53e5a5d933e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2389957793389180795 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3759713785733663886, guid: 54f07e3e9b1edfb4daa18ca83e96740e,

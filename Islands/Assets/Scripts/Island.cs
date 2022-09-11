@@ -40,4 +40,9 @@ public class Island : MonoBehaviour
     {
         return wind.transform.forward * wind.Magnitude;
     }
+
+    public ObjectLauncher GetCannon()
+    {
+        return cannon;
+    }
 }

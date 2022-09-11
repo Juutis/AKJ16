@@ -6,7 +6,7 @@ using UnityEngine;
 public class Wind : MonoBehaviour
 {
     [SerializeField]
-    [Range(0f, 0.5f)]
+    [Range(0f, 50f)]
     private float windMagnitude;
 
     public float Magnitude
