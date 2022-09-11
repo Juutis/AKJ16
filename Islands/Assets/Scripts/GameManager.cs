@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ChangeCannon(ObjectLauncher cannon)
@@ -57,9 +56,15 @@ public class GameManager : MonoBehaviour
         currentIsland = island;
         if (currentIsland == islands.Last())
         {
-            // Game over
-            Debug.Log("GAME OVER!");
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        // Game over
+        Time.timeScale = 0f;
+        UIManager.main.ShowTheEnd();
     }
 
     public void SetFlyingObject(LaunchableObject flyingObject)
