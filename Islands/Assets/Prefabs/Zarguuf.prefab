@@ -842,6 +842,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: aaea1ee5fc5bcdd42abf1ea2076e9201, type: 2}
+  - {fileID: 2100000, guid: af1a65215675ba646b3f79f24508f601, type: 2}
   - {fileID: 2100000, guid: 26397058d1933454ca07d9c654488b8f, type: 2}
   - {fileID: 2100000, guid: 9f7a5f539e607084695c0ba2a9a16d7e, type: 2}
   m_StaticBatchInfo:
@@ -873,7 +874,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.00060269237, y: -0.0895617, z: 0.060153246}
+    m_Center: {x: 0.00060269237, y: -0.0895617, z: 0.060153365}
     m_Extent: {x: 1, y: 1.6820667, z: 1.6236272}
   m_DirtyAABB: 0
 --- !u!4 &5910149809532597333 stripped
@@ -938,8 +939,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.053447485, y: -0.06744826, z: -3.1436553}
-    m_Extent: {x: 1.6383529, y: 1.1356446, z: 2.8935351}
+    m_Center: {x: 0.012007475, y: 0.03945005, z: -3.1285071}
+    m_Extent: {x: 1.6015089, y: 1.1361744, z: 2.878387}
   m_DirtyAABB: 0
 --- !u!183 &1859175786100905698
 Cloth:
@@ -2123,8 +2124,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.041594267, y: 0.94808877, z: -3.3412228}
-    m_Extent: {x: 1.2266004, y: 0.61070955, z: 2.3807888}
+    m_Center: {x: 1.165879, y: 1.428842, z: -0.23484707}
+    m_Extent: {x: 1.9629815, y: 1.091463, z: 1.7326722}
   m_DirtyAABB: 0
 --- !u!183 &1926407378604583143
 Cloth:
