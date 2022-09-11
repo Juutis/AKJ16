@@ -17,7 +17,22 @@ public class Bird : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         randomOffsetY = Random.Range(-Mathf.PI, Mathf.PI);
-        idleAnim.Play(0, -1, Random.value);
+        if (idleAnim != null) {
+            idleAnim.Play(0, -1, Random.value);
+        } else {
+            var anims = GetComponentsInChildren<Animator>();
+            foreach (var anim in anims) {
+                anim.Play(0, -1, Random.value);
+            }
+            var birds = GetComponentsInChildren<Bird>();
+            foreach (var bird in birds) {
+                if (bird != this) {
+                    bird.enabled = false;
+                    bird.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    bird.GetComponent<Rigidbody>().isKinematic = true;
+                }
+            }
+        }
     }
 
     // Update is called once per frame

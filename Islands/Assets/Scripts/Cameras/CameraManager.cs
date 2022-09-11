@@ -40,11 +40,7 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Init();
-    }
-    private void Init()
+    public void Init()
     {
         currentFlyingObjectVCam = flyingObjectVCams[Random.Range(0, flyingObjectVCams.Count - 1)];
         ResetFlyingCamera();
