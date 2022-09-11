@@ -139,9 +139,12 @@ public class LaunchableObject : MonoBehaviour
             launcher.Reset();
             StopPlayingFlyingSound();
             SoundManager.main.PlaySound(GameSoundType.Molsk);
-            waterParticles.transform.parent = null;
-            waterParticles.transform.rotation = Quaternion.Euler(-90, 0, 0);
-            waterParticles.Play();
+            var wp = Instantiate(waterParticles);
+            wp.transform.parent = null;
+            wp.transform.rotation = Quaternion.Euler(-90, 0, 0);
+            var oldPos = transform.position;
+            wp.transform.position = new Vector3(oldPos.x, -8.3f, oldPos.z);
+            wp.Play();
         }
     }
 
@@ -188,6 +191,12 @@ public class LaunchableObject : MonoBehaviour
             skipCount++;
             StopPlayingFlyingSound();
             SoundManager.main.PlaySound(GameSoundType.Skip);
+            var wp = Instantiate(waterParticles);
+            wp.transform.parent = null;
+            wp.transform.rotation = Quaternion.Euler(-90, 0, 0);
+            var oldPos = transform.position;
+            wp.transform.position = new Vector3(oldPos.x, -8.3f, oldPos.z);
+            wp.Play();
         }
 
     }
