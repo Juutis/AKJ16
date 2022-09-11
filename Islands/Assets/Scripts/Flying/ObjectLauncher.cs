@@ -47,6 +47,8 @@ public class ObjectLauncher : MonoBehaviour
         float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.1f);
         direction = new Vector3(startVertical, startHorizontal, 0f);
         UIManager.main.InitPowerMeter(launchKey);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Reset()
@@ -90,7 +92,7 @@ public class ObjectLauncher : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse1)) {
             mouseX = Input.GetAxis("Mouse X");
-            mouseY = Input.GetAxis("Mouse Y");
+            mouseY = -Input.GetAxis("Mouse Y");
         } else {
             mouseX = 0;
             mouseY = 0;
