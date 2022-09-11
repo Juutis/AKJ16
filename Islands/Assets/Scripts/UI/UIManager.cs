@@ -9,8 +9,11 @@ public class UIManager : MonoBehaviour
     {
         main = this;
     }
+
     [SerializeField]
-    private UILaunchDirection uiLaunchDirection;
+    private UIMainMenu uiMainMenu;
+    [SerializeField]
+    private UITheEnd theEndMenu;
     [SerializeField]
     private UIPowerMeter uiPowerMeter;
     [SerializeField]
@@ -26,6 +29,17 @@ public class UIManager : MonoBehaviour
     {
         sfxMuted.Init(SoundManager.main.SfxMuted, muteSfxKey);
         musicMuted.Init(SoundManager.main.MusicMuted, muteMusicKey);
+#if !UNITY_EDITOR
+        uiMainMenu.gameObject.SetActive(true);
+#else
+        CameraManager.main.Init();
+#endif
+    }
+
+    public void ShowTheEnd()
+    {
+        theEndMenu.gameObject.SetActive(true);
+        theEndMenu.Show();
     }
 
     public void InitPowerMeter(KeyCode key)
