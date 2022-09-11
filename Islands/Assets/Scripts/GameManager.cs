@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentIsland = islands[0];
     }
 
     // Update is called once per frame
@@ -54,5 +55,10 @@ public class GameManager : MonoBehaviour
     public void SetFlyingObject(LaunchableObject flyingObject)
     {
         this.flyingObject = flyingObject;
+    }
+
+    public Vector3 GetWind()
+    {
+        return this.currentIsland.GetWind();
     }
 }
