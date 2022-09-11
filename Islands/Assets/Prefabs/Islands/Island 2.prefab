@@ -95,10 +95,15 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1864409190306599054, guid: 9721777b6067857458355c93789d90d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2088953454585192648, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
       propertyPath: windMagnitude
-      value: 0.102
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2594165335491819670, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
@@ -145,6 +150,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7945462527130766749, guid: 9721777b6067857458355c93789d90d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8182137635979812251, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
       propertyPath: m_IsActive
@@ -158,7 +168,7 @@ PrefabInstance:
     - target: {fileID: 8441902699941995747, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8441902699941995747, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
