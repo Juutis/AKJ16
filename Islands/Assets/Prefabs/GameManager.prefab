@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 1603569671240914573}
   - {fileID: 4843488080325319617}
   - {fileID: 8514291969367885509}
+  - {fileID: 5227394328453795705}
   currentCannon: {fileID: 925728982996841128}
 --- !u!1001 &1515454917939575797
 PrefabInstance:
@@ -313,6 +314,18 @@ MonoBehaviour:
 --- !u!114 &4843488080325319617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6210600812876996660, guid: 54f07e3e9b1edfb4daa18ca83e96740e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1515454917939575797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00de57b2d49a4a409a1a53e5a5d933e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5227394328453795705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6740926869484958860, guid: 54f07e3e9b1edfb4daa18ca83e96740e,
     type: 3}
   m_PrefabInstance: {fileID: 1515454917939575797}
   m_PrefabAsset: {fileID: 0}
