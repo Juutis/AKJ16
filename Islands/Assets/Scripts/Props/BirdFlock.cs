@@ -19,6 +19,9 @@ public class BirdFlock : MonoBehaviour
             bird.enabled = false;
             bird.GetComponent<Rigidbody>().velocity = Vector3.zero;
             bird.GetComponent<Rigidbody>().isKinematic = true;
+            var dir = bird.transform.position - transform.position;
+            dir = Vector3.Cross(dir, Vector3.up);
+            bird.transform.forward = dir;
         }
     }
 

@@ -130,7 +130,7 @@ MonoBehaviour:
   cannon: {fileID: 975148528477786300}
   muzzleFlash: {fileID: 3123987255067709199}
   clampHorizontal: {x: -90, y: 90}
-  clampVertical: {x: 5, y: 70}
+  clampVertical: {x: 5, y: 60}
   rotateSpeed: {x: 120, y: 180}
   launchSpeed: {x: 20, y: 60}
   launchKey: 32
