@@ -10,11 +10,11 @@ public static class PhysicsConstants
     public const float bigBounceCoef = 0.85f;
     public const float crashForceAmount = 1f;
 
-    public const int maxSkips = 5;
+    public const int maxSkips = 1;
     public const float minSkipSpeed = 25f;
-    public const float smallSkipBoost = 1.1f;
+    public const float smallSkipBoost = 1.5f;
     public const float smallSkipDragMin = 0.25f;
-    public const float smallSkipDragMax = 0.9f;
+    public const float smallSkipDragMax = 1.1f;
 
     public const float flyMoveAmount = 8f;
     public const float flyBreakAmount = 6f;

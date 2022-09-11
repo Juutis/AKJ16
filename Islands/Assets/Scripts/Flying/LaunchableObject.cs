@@ -164,10 +164,12 @@ public class LaunchableObject : MonoBehaviour
             skipPrecision = 1.0f - (spacePressed - waterWasHit) / skipToleranceAfter;
         }
 
-        Vector3 contactNormal = transform.up;
+        Vector3 contactNormal = Vector3.up;
         float angle = 90 - (180 - Vector3.Angle(this.rigidBaby.velocity, contactNormal));
-        float maxSkipAngle = 20;
+        skipPrecision *= (1.0f - angle/80.0f);
+        float maxSkipAngle = 80;
         float minSkipAngle = 0;
+        Debug.Log(skipPrecision);
         if (angle > minSkipAngle && angle < maxSkipAngle && rigidBaby.velocity.magnitude > PhysicsConstants.minSkipSpeed && skipCount < PhysicsConstants.maxSkips)
         {
             var skipYVel = -velocity.y * PhysicsConstants.smallSkipBoost * skipPrecision;
