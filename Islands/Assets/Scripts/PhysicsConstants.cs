@@ -8,7 +8,7 @@ public static class PhysicsConstants
     public const float drag = 0.01f;
 
     public const float bigBounceCoef = 0.85f;
-    public const float smallBounceCoef = 0.05f;
+    public const float crashForceAmount = 1f;
 
     public const int maxSkips = 5;
     public const float minSkipSpeed = 25f;

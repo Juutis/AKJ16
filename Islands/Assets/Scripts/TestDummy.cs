@@ -116,7 +116,7 @@ public class TestDummy : MonoBehaviour
         {
             var normal = collision.GetContact(0).normal;
             var reflected = Vector3.Reflect(velocity, normal);
-            var coef = PhysicsConstants.smallBounceCoef;
+            var coef = 0.1f;// PhysicsConstants.smallBounceCoef;
             velocity = new Vector3(reflected.x * coef, reflected.y * coef, reflected.z * coef);
         }
     }

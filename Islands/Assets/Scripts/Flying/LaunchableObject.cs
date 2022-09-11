@@ -7,6 +7,7 @@ public class LaunchableObject : MonoBehaviour
     private Rigidbody rigidBaby;
     private bool isLaunched = false;
     private ObjectLauncher launcher;
+    public bool crashed = false;
 
     private float axisX = 0f;
     private float axisY = 0f;
@@ -18,6 +19,9 @@ public class LaunchableObject : MonoBehaviour
     private float lastSkip = 0f;
     private float skipTime = 0.33f;
     public int skipCount = 0;
+
+    private float crashStarted = 0f;
+    private const float timeUntilCrashRestarts = 10f;
 
     private Vector3 velocity;
     private float launchForceSpeed;
@@ -37,6 +41,9 @@ public class LaunchableObject : MonoBehaviour
         shoot = true;
         skipCount = 0;
         Invoke("PlayFlyingSound", 1f);
+        rigidBaby.useGravity = false;
+        crashStarted = 0f;
+        crashed = false;
     }
 
     public void PlayFlyingSound()
@@ -58,13 +65,13 @@ public class LaunchableObject : MonoBehaviour
     {
         if (shoot)
         {
-            rigidBaby.useGravity = true;
+            // rigidBaby.useGravity = true;
             isLaunched = true;
             shoot = false;
             velocity = rigidBaby.transform.forward * launchForceSpeed;
         }
 
-        if (isLaunched)
+        if (isLaunched && !crashed)
         {
             Vector3 wind = GameManager.main.GetWind() * Time.deltaTime;
             Vector3 gravity = new Vector3(0, PhysicsConstants.gravity, 0) * Time.deltaTime;
@@ -74,6 +81,11 @@ public class LaunchableObject : MonoBehaviour
             velocity = velocity - gravity - scaledDrag + horizontalMovement + verticalBreak + wind;
             rigidBaby.velocity = velocity;
         }
+
+        if (crashed && Time.time - crashStarted > timeUntilCrashRestarts)
+        {
+            launcher.Reset();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -82,15 +94,19 @@ public class LaunchableObject : MonoBehaviour
         {
             return;
         }
-        
+
         if (collision.collider.tag != "Bounce")
         {
             var normal = collision.GetContact(0).normal;
-            var reflected = Vector3.Reflect(velocity, normal);
-            var coef = PhysicsConstants.smallBounceCoef;
-            velocity = reflected * coef;
             SoundManager.main.StopPlayingFlyingSound();
             SoundManager.main.PlaySound(GameSoundType.Hit);
+            rigidBaby.useGravity = true;
+            rigidBaby.AddForce(normal * PhysicsConstants.crashForceAmount, ForceMode.Impulse);
+            if (!crashed)
+            {
+                crashStarted = Time.time;
+                crashed = true;
+            }
         }
     }
 
