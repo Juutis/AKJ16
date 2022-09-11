@@ -32,7 +32,7 @@ Transform:
   - {fileID: 5520865422965363729}
   - {fileID: 8309944889328355338}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8136797371776976256
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5520865422965363729}
   - component: {fileID: 2230167261077254481}
   - component: {fileID: 2407268153818729541}
-  - component: {fileID: 8301291468493644049}
+  - component: {fileID: 2953369731819710342}
   m_Layer: 4
   m_Name: water
   m_TagString: Untagged
@@ -118,20 +118,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8301291468493644049
-MeshCollider:
+--- !u!65 &2953369731819710342
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8136797371776976256}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1001 &5471549665117492085
 PrefabInstance:
   m_ObjectHideFlags: 0
