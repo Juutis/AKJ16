@@ -84,6 +84,10 @@ public class ObjectLauncher : MonoBehaviour
 
     private void GetInput()
     {
+        if (!UIManager.main.CanUsePower())
+        {
+            return;
+        }
         if (Input.GetKey(KeyCode.Mouse1)) {
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
@@ -91,7 +95,6 @@ public class ObjectLauncher : MonoBehaviour
             mouseX = 0;
             mouseY = 0;
         }
-
         if (!isLaunched)
         {
             axisY = Input.GetAxis("Vertical") + mouseY;
@@ -101,6 +104,10 @@ public class ObjectLauncher : MonoBehaviour
 
     private void RotatePreview()
     {
+        if (!UIManager.main.CanUsePower())
+        {
+            return;
+        }
         if (Mathf.Abs(axisX) > inputMin)
         {
             bool canRotate = (axisX > 0 && direction.y < clampHorizontal.y) || (axisX < 0 && direction.y > clampHorizontal.x);
