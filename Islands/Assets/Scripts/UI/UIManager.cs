@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIPowerMeter uiPowerMeter;
     [SerializeField]
+    private UILauncherCameraSwitch uiLauncherCameraSwitch;
+
+    [SerializeField]
     private UIMuteStatus musicMuted;
     [SerializeField]
     private UIMuteStatus sfxMuted;
@@ -24,6 +27,8 @@ public class UIManager : MonoBehaviour
     private KeyCode muteSfxKey;
     [SerializeField]
     private KeyCode muteMusicKey;
+    [SerializeField]
+    private KeyCode toggleLauncherVCamKey;
 
     void Start()
     {
@@ -34,6 +39,7 @@ public class UIManager : MonoBehaviour
 #else
         CameraManager.main.Init();
 #endif
+        uiLauncherCameraSwitch.Init(toggleLauncherVCamKey, 1);
     }
 
     public void ShowTheEnd()

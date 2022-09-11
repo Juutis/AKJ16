@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ObjectLauncher
   - Bounce
+  - DEATH
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Bird
   - DEATH
-  - 
+  - Cannon
   - 
   - 
   - 
