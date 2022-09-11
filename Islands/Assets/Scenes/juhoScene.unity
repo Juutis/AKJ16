@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &54606409 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8252946391351957940, guid: de6b0f36b02918f44b65baf4783e08c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538826574473465620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00de57b2d49a4a409a1a53e5a5d933e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &230789271 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1396902754565001672, guid: de6b0f36b02918f44b65baf4783e08c2,
@@ -135,6 +147,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 8505666084456624302}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &561171298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 544842269096843442, guid: de6b0f36b02918f44b65baf4783e08c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538826574473465620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00de57b2d49a4a409a1a53e5a5d933e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &1282810783 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 1538826573728994339, guid: de6b0f36b02918f44b65baf4783e08c2,
@@ -521,6 +545,16 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6624593698607413235, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: islands.Array.data[2]
+      value: 
+      objectReference: {fileID: 54606409}
+    - target: {fileID: 6624593698607413235, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: islands.Array.data[3]
+      value: 
+      objectReference: {fileID: 561171298}
     - target: {fileID: 6643608941148512035, guid: de6b0f36b02918f44b65baf4783e08c2,
         type: 3}
       propertyPath: timePerStep
