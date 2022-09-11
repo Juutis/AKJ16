@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.7924528, g: 0.41642055, b: 0, a: 0}
+  m_FogColor: {r: 0.8509804, g: 0.8901961, b: 0.95686275, a: 0}
   m_FogMode: 2
-  m_FogDensity: 0.01
+  m_FogDensity: 0.003
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1282810783}
-  m_IndirectSpecularColor: {r: 0.7207657, g: 0.3629918, b: 0.08981566, a: 1}
+  m_IndirectSpecularColor: {r: 0.7136119, g: 0.7551537, b: 0.8959676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
