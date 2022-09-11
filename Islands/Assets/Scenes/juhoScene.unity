@@ -135,6 +135,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 8505666084456624302}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1447278552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115956468728299602, guid: de6b0f36b02918f44b65baf4783e08c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1538826574473465620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1538826574473465620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,6 +580,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8051168257843603081, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: flyingObjectVCams.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051168257843603081, guid: de6b0f36b02918f44b65baf4783e08c2,
+        type: 3}
+      propertyPath: flyingObjectVCams.Array.data[0]
+      value: 
+      objectReference: {fileID: 1447278552}
     m_RemovedComponents:
     - {fileID: 2501692378252589409, guid: de6b0f36b02918f44b65baf4783e08c2, type: 3}
     m_AddedGameObjects: []
