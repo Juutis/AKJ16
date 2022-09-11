@@ -177,11 +177,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2088953454585192648, guid: 9721777b6067857458355c93789d90d3,
-        type: 3}
-      propertyPath: windMagnitude
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2594165335491819670, guid: 9721777b6067857458355c93789d90d3,
         type: 3}
       propertyPath: m_LocalPosition.x

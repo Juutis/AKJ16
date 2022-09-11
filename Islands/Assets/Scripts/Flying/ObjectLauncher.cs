@@ -42,7 +42,7 @@ public class ObjectLauncher : MonoBehaviour
     private void Start()
     {
         float startHorizontal = Mathf.Lerp(clampHorizontal.x, clampHorizontal.y, 0.5f);
-        float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.5f);
+        float startVertical = Mathf.Lerp(clampVertical.x, clampVertical.y, 0.1f);
         direction = new Vector3(startVertical, startHorizontal, 0f);
         UIManager.main.InitPowerMeter(launchKey);
     }
